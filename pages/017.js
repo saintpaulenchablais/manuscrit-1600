@@ -2,6 +2,11 @@
 // (une ligne du manuscrit = une ligne entre guillemets), puis enregistrez.
 ajouterPage({
   num: 17, folio: "9 recto", image: "scans/017.webp",
+      moderne: [
+      "[Suite de la page précédente] … et le jardin dudit seigneur. Le déclarant indique que ce bien appartenait autrefois à Claudaz, fille de feu Bernard Bochaton.",
+      "Ses limites sont les suivantes : à l’ouest, la terre et le pré de Thony, Antoine, Jean et Claudy, fils de feu Claudy Bochatton, qui appartenaient autrefois à François et Blaise Bochatton, partagés récemment et relevant du même fief ; au-dessus, la terre d’Aimé, fils de feu Paul Borgnier, qui appartenait autrefois à maître Jean Du Truel ; au-dessous, le chemin public ; à l’est, le terrain communal de la Chavanaz, aujourd’hui possédé par Pierre Laurent, notaire (« égrège ») et châtelain d’Évian.",
+      "Pour cette parcelle décrite ci-dessus… [suite page suivante]"
+    ],
     bandes: { haut: 0.066, pas: 0.0327, hauteur: 0.036, gauche: 0.12, droite: 0.87 },
     lignes: [
       "et curtil dudict seigneur",
