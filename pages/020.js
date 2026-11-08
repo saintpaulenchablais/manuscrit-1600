@@ -2,6 +2,11 @@
 // (une ligne du manuscrit = une ligne entre guillemets), puis enregistrez.
 ajouterPage({
   num: 20, folio: "10 verso", image: "scans/020.webp",
+  moderne: [
+      "[Suite] … de Saint-Paul. Cette déclaration de 1609 avait été reçue par feu Jean Baud, notaire, remplaçant de feu André Burnet, notaire chargé en dernier de ce registre. Elle avait été faite par Claudaz, fille de feu Bernard Bochatton, de Poyse, paroisse de Saint-Paul, veuve de Nicolas de Blonay.",
+      "Auparavant, ces mêmes biens avaient été déclarés devant feu Charles Collognier, notaire chargé du registre avant lui, par François, fils de feu Mermet Bochet, arrière-grand-père de Claudaz Bochatton. François agissait en son nom et comme tuteur de son neveu Thivent, fils de feu Jean Bochet, en l’année mil cinq cent… [suite page suivante]",
+      "Remarque : on voit ici comment le registre remonte le temps : chaque déclaration rappelle les précédentes, sur plusieurs générations d’une même famille."
+    ],
     bandes: { haut: 0.066, pas: 0.0329, hauteur: 0.036, gauche: 0.27, droite: 0.97 },
     lignes: [
       "de Sainct Paul es mains",
