@@ -72,6 +72,12 @@ main{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem 3rem;display:grid;gri
 
 .texte h2{font-family:var(--fell);font-weight:400;font-size:1.7rem;margin:0 0 .2rem}
 .texte .sous{color:var(--gris);font-size:.95rem;margin:0 0 1rem}
+.onglets{display:flex;gap:.25rem;border-bottom:1px solid var(--trait);margin:0 0 .9rem;font-family:var(--sans);font-size:.92rem}
+.onglets button{background:none;border:0;border-bottom:2px solid transparent;padding:.5rem .8rem;cursor:pointer;color:var(--gris);margin-bottom:-1px}
+.onglets button[aria-selected="true"]{color:var(--encre);border-bottom-color:var(--rouge);font-weight:600}
+.moderne p{margin:0 0 .9rem;max-width:62ch}
+.brouillon{font-family:var(--sans);font-size:.82rem;color:var(--gris);background:var(--surligne);padding:.45rem .7rem;border-radius:3px;margin:0 0 1rem}
+[hidden]{display:none!important}
 ol.lignes{list-style:none;margin:0;padding:0;counter-reset:l}
 ol.lignes li{counter-increment:l;display:grid;grid-template-columns:2.4rem 1fr;align-items:baseline;padding:.12rem .4rem .12rem 0;border-radius:3px;cursor:default}
 ol.lignes li::before{content:counter(l);font-family:var(--sans);font-size:.72rem;color:var(--gris);text-align:right;padding-right:.9rem;font-variant-numeric:tabular-nums}
@@ -132,8 +138,18 @@ footer p{margin:.3rem 0;max-width:75ch}
 
   <section class="texte" aria-label="Transcription">
     <h2 id="titrepage"></h2>
-    <p class="sous">Transcription ligne à ligne, orthographe d’origine. Survolez ou touchez une ligne pour la repérer sur le scan.</p>
-    <ol class="lignes" id="lignes"></ol>
+    <div class="onglets" role="tablist">
+      <button type="button" role="tab" id="ong-transcription" aria-selected="true">Transcription</button>
+      <button type="button" role="tab" id="ong-moderne" aria-selected="false">Français actuel</button>
+    </div>
+    <div id="vue-transcription" role="tabpanel">
+      <p class="sous">Transcription ligne à ligne, orthographe d’origine. Survolez ou touchez une ligne pour la repérer sur le scan.</p>
+      <ol class="lignes" id="lignes"></ol>
+    </div>
+    <div id="vue-moderne" role="tabpanel" hidden>
+      <p class="brouillon">Version de travail, en attente de relecture. Elle aide à comprendre le texte mais ne remplace pas la transcription.</p>
+      <div class="moderne" id="moderne"></div>
+    </div>
 
     <div class="bloc" id="blocnotes">
       <h3>Notes</h3>
@@ -217,6 +233,9 @@ function afficher(i, ligneCible){
     toile.appendChild(d);
   });
 
+  $("moderne").innerHTML = p.moderne
+    ? p.moderne.map(par=>`<p>${esc(par)}</p>`).join("")
+    : "<p><em>La version en français actuel de cette page n’est pas encore disponible.</em></p>";
   $("lignes").innerHTML = p.lignes.map((l,n)=>`<li data-n="${n}" tabindex="0"><span>${decorer(l)}</span></li>`).join("");
   $("lignes").querySelectorAll("li").forEach(li=>{
     const n = +li.dataset.n;
@@ -247,7 +266,16 @@ function marquer(n){
   document.querySelectorAll(".bande").forEach(b=>b.classList.toggle("vue", +b.dataset.n===n));
   document.querySelectorAll("#lignes li").forEach(li=>li.classList.toggle("vue", +li.dataset.n===n));
 }
+function onglet(v){
+  const m = v==="moderne";
+  $("ong-moderne").setAttribute("aria-selected", m); $("ong-transcription").setAttribute("aria-selected", !m);
+  $("vue-moderne").hidden = !m; $("vue-transcription").hidden = m;
+  if (m) marquer(-1);
+}
+$("ong-transcription").onclick = ()=>onglet("transcription");
+$("ong-moderne").onclick = ()=>onglet("moderne");
 function allerLigne(n){
+  onglet("transcription");
   const li = document.querySelector(`#lignes li[data-n="${n}"]`);
   if (!li) return;
   marquer(n);
@@ -304,13 +332,14 @@ q.addEventListener("input", ()=>{
   const trouves = [];
   PAGES.forEach((p,i)=>{
     p.lignes.forEach((l,n)=>{ if (norm(l).includes(t)) trouves.push({i,n,txt:l,p}); });
+    (p.moderne||[]).forEach(par=>{ const k=norm(par).indexOf(t); if (k>=0){ const a=Math.max(0,k-35); trouves.push({i,n:null,m:1,txt:(a?"…":"")+par.slice(a,k+t.length+45)+"…",p}); } });
     p.notes.forEach(([a,d])=>{ if (norm(a+" "+d).includes(t)) trouves.push({i,n:null,txt:`Note : ${a}`,p}); });
   });
   res.innerHTML = trouves.length
     ? trouves.slice(0,60).map(r=>{
         const s = norm(r.txt).indexOf(t);
         const h = s<0 ? esc(r.txt) : esc(r.txt.slice(0,s))+"<mark>"+esc(r.txt.slice(s,s+t.length))+"</mark>"+esc(r.txt.slice(s+t.length));
-        return `<button type="button" data-i="${r.i}" data-n="${r.n ?? ""}">${h}<small>Page ${r.p.num}${r.n!=null?`, ligne ${r.n+1}`:""}</small></button>`;
+        return `<button type="button" data-i="${r.i}" data-n="${r.n ?? ""}" data-m="${r.m?1:""}">${h}<small>Page ${r.p.num}${r.n!=null?`, ligne ${r.n+1}`:(r.m?", français actuel":"")}</small></button>`;
       }).join("")
     : `<div class="vide">Aucun résultat pour « ${esc(q.value.trim())} ». Essayez une autre orthographe (Bochaton, Bochatton…).</div>`;
   res.classList.add("ouvert");
@@ -318,6 +347,7 @@ q.addEventListener("input", ()=>{
     res.classList.remove("ouvert");
     const i=+b.dataset.i, n=b.dataset.n===""?null:+b.dataset.n;
     if (i!==idx) afficher(i,n); else if (n!=null) allerLigne(n);
+    if (b.dataset.m) onglet("moderne");
   });
 });
 document.addEventListener("click", e=>{ if (!e.target.closest(".recherche")) res.classList.remove("ouvert"); });
