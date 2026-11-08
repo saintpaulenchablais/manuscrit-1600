@@ -1,0 +1,24 @@
+LISEUSE DU MANUSCRIT DE 1600 – SAINT-PAUL-EN-CHABLAIS
+=====================================================
+
+OUVRIR SUR SON ORDINATEUR
+  Double-cliquer sur index.html (les dossiers « pages » et « scans » doivent rester à côté).
+
+CONTENU DU DOSSIER
+  index.html         la liseuse (ne pas modifier)
+  pages/liste.js     la liste des pages publiées
+  pages/017.js ...   une transcription par page (modifiable avec le Bloc-notes)
+  pages/glossaire.js le glossaire commun à tout le livre
+  scans/017.webp ... un scan par page
+
+AJOUTER UNE PAGE
+  1. Mettre le scan dans « scans » (ex. 021.webp) et le fichier de la page dans « pages » (ex. 021.js).
+  2. Ajouter "021" dans pages/liste.js.
+
+CORRIGER UNE TRANSCRIPTION
+  Ouvrir pages/0XX.js avec le Bloc-notes, modifier le texte entre guillemets, enregistrer.
+  Attention à garder les guillemets et les virgules en fin de ligne.
+
+METTRE EN LIGNE
+  Déposer le contenu de ce dossier (index.html, pages, scans) sur n'importe quel hébergement web
+  (GitHub Pages, Firebase, hébergeur du site de la mairie...). Aucune base de données nécessaire.

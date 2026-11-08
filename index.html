@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le manuscrit de 1600 – Saint-Paul-en-Chablais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#E6E9E7; --surface:#F7F8F6; --encre:#1E1B18; --gris:#5B605D; --trait:#C4CAC6;
+  --rouge:#9E1B2C; --surligne:rgba(158,27,44,.16); --cadre:#2F3A36;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --fell:"IM Fell DW Pica", Georgia, serif;
+  --sans:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fond:#171A19; --surface:#202423; --encre:#E7E4DE; --gris:#A3A9A5; --trait:#3A403D;
+    --rouge:#E0606E; --surligne:rgba(224,96,110,.22); --cadre:#0E100F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#171A19; --surface:#202423; --encre:#E7E4DE; --gris:#A3A9A5; --trait:#3A403D;
+  --rouge:#E0606E; --surligne:rgba(224,96,110,.22); --cadre:#0E100F; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--serif);font-size:1.0625rem;line-height:1.6}
+a{color:var(--rouge)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rouge);outline-offset:2px}
+
+header.tete{max-width:1240px;margin:0 auto;padding:2.2rem 1.25rem 1.2rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:end;justify-content:space-between}
+.titre h1{font-family:var(--fell);font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.02;margin:0;letter-spacing:-.01em}
+.titre p{margin:.5rem 0 0;color:var(--gris);font-size:1rem}
+.recherche{flex:1 1 280px;max-width:420px;position:relative}
+.recherche input{width:100%;padding:.65rem .9rem;border:1px solid var(--trait);background:var(--surface);border-radius:4px;font-family:var(--sans);font-size:.95rem}
+.resultats{position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);background:var(--surface);border:1px solid var(--trait);border-radius:4px;max-height:60vh;overflow:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.resultats.ouvert{display:block}
+.resultats button{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--trait);padding:.55rem .8rem;cursor:pointer}
+.resultats button:hover{background:var(--surligne)}
+.resultats small{display:block;font-family:var(--sans);color:var(--gris);font-size:.78rem}
+.resultats mark{background:var(--surligne);color:inherit}
+.resultats .vide{padding:.7rem .8rem;color:var(--gris);font-family:var(--sans);font-size:.9rem}
+
+nav.pages{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:var(--sans);font-size:.92rem;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait)}
+nav.pages button{background:none;border:0;padding:.75rem .4rem;cursor:pointer;color:var(--rouge)}
+nav.pages button:disabled{color:var(--trait);cursor:default}
+nav.pages .ou{flex:1;text-align:center;color:var(--gris)}
+nav.pages .ou strong{color:var(--encre);font-weight:600}
+
+main{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem 3rem;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2rem;align-items:start}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+
+.scan{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem)}
+@media (max-width:860px){.scan{position:static}}
+.cadre{background:var(--cadre);border-radius:3px;overflow:hidden;position:relative;touch-action:none;cursor:grab;aspect-ratio:1300/1835;width:min(100%, calc((100vh - 8rem) * 1300 / 1835));margin:0 auto}
+@media (max-width:860px){.cadre{width:100%}}
+.cadre.tire{cursor:grabbing}
+.toile{position:absolute;inset:0;transform-origin:0 0}
+.toile img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none}
+.bande{position:absolute;background:var(--surligne);border-left:3px solid var(--rouge);opacity:0;transition:opacity .15s}
+.bande.vue{opacity:1}
+.outils{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-top:.6rem;font-family:var(--sans);font-size:.85rem;color:var(--gris)}
+.outils button{border:1px solid var(--trait);background:var(--surface);border-radius:4px;min-width:2.2rem;padding:.3rem .55rem;cursor:pointer}
+.outils span{margin-left:auto}
+
+.texte h2{font-family:var(--fell);font-weight:400;font-size:1.7rem;margin:0 0 .2rem}
+.texte .sous{color:var(--gris);font-size:.95rem;margin:0 0 1rem}
+ol.lignes{list-style:none;margin:0;padding:0;counter-reset:l}
+ol.lignes li{counter-increment:l;display:grid;grid-template-columns:2.4rem 1fr;align-items:baseline;padding:.12rem .4rem .12rem 0;border-radius:3px;cursor:default}
+ol.lignes li::before{content:counter(l);font-family:var(--sans);font-size:.72rem;color:var(--gris);text-align:right;padding-right:.9rem;font-variant-numeric:tabular-nums}
+ol.lignes li.vue{background:var(--surligne)}
+.nom{font-variant:small-caps;letter-spacing:.02em}
+abbr.glo{text-decoration:underline dotted var(--rouge);text-underline-offset:3px;cursor:help}
+
+.bloc{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--trait)}
+.bloc h3{font-family:var(--fell);font-weight:400;font-size:1.3rem;margin:0 0 .6rem}
+.bloc dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem}
+.bloc dt{font-style:italic}
+.bloc dd{margin:0;color:var(--encre)}
+@media (max-width:520px){.bloc dl{grid-template-columns:1fr}.bloc dd{margin-bottom:.5rem}}
+.index li{margin-bottom:.3rem}
+.index ul{padding-left:1.1rem;margin:.2rem 0 .8rem}
+.index button{background:none;border:0;padding:0;color:var(--rouge);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-size:.9rem;font-family:var(--sans)}
+.colonnes{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem}
+@media (max-width:520px){.colonnes{grid-template-columns:1fr}}
+.colonnes h4{font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--gris);margin:0 0 .3rem}
+
+footer{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem 2.5rem;border-top:1px solid var(--trait);font-family:var(--sans);font-size:.85rem;color:var(--gris)}
+footer p{margin:.3rem 0;max-width:75ch}
+.acompleter{background:var(--surligne);color:var(--encre);padding:0 .25rem;border-radius:2px}
+@media (prefers-reduced-motion:reduce){.bande{transition:none}}
+</style>
+</head>
+<body>
+<header class="tete">
+  <div class="titre">
+    <h1>Le manuscrit de 1600</h1>
+    <p>Les possessions du monastère de Saint-Paul. Fonds patrimonial de la commune de Saint-Paul-en-Chablais : lire les pages, chercher un nom, une famille ou un lieu.</p>
+  </div>
+  <div class="recherche" role="search">
+    <label for="q" class="sr" style="position:absolute;left:-9999px">Rechercher dans le livre</label>
+    <input id="q" type="search" placeholder="Chercher un nom, un lieu, un mot…" autocomplete="off">
+    <div class="resultats" id="resultats" role="listbox"></div>
+  </div>
+</header>
+
+<nav class="pages" aria-label="Pages">
+  <button id="prec" type="button">‹ Page précédente</button>
+  <div class="ou" id="ou"></div>
+  <button id="suiv" type="button">Page suivante ›</button>
+</nav>
+
+<main>
+  <section class="scan" aria-label="Scan de la page">
+    <div class="cadre" id="cadre">
+      <div class="toile" id="toile"><img id="img" alt=""></div>
+    </div>
+    <div class="outils">
+      <button type="button" id="zmoins" aria-label="Dézoomer">−</button>
+      <button type="button" id="zplus" aria-label="Zoomer">+</button>
+      <button type="button" id="zreset">Page entière</button>
+      <span>Molette ou pincement pour zoomer, glisser pour déplacer</span>
+    </div>
+  </section>
+
+  <section class="texte" aria-label="Transcription">
+    <h2 id="titrepage"></h2>
+    <p class="sous">Transcription ligne à ligne, orthographe d’origine. Survolez ou touchez une ligne pour la repérer sur le scan.</p>
+    <ol class="lignes" id="lignes"></ol>
+
+    <div class="bloc" id="blocnotes">
+      <h3>Notes</h3>
+      <dl id="notes"></dl>
+    </div>
+
+    <div class="bloc index">
+      <h3>Personnes et lieux de cette page</h3>
+      <div class="colonnes">
+        <div><h4>Personnes</h4><ul id="personnes"></ul></div>
+        <div><h4>Lieux</h4><ul id="lieux"></ul></div>
+      </div>
+    </div>
+
+    <div class="bloc">
+      <h3>Petit glossaire</h3>
+      <dl id="glossaire"></dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Manuscrit de 1600 sur les possessions du monastère de Saint-Paul, retrouvé chez un bouquiniste de Toulouse et acquis par la commune de Saint-Paul-en-Chablais. Transcription et notes : Madame Déage.</p>
+  <p>Version de travail : quelques pages pour l’instant, le reste suivra.</p>
+</footer>
+
+<script>
+/* ===== Données : ajouter une entrée par page ===== */
+let PAGES = [];
+let GLOSSAIRE = {};
+function ajouterPage(p){ PAGES.push(p); }
+
+/* ===== Outils ===== */
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+let idx = 0;
+
+function decorer(ligne){
+  let h = esc(ligne);
+  h = h.replace(/\b([A-Z]{2,}(?: [A-Z]{2,})*)\b/g, m => ["POUR","ITEM","ASCAVOIR"].includes(m) ? m : `<span class="nom">${m}</span>`);
+  const termes = Object.keys(GLOSSAIRE).sort((a,b)=>b.length-a.length);
+  const parts = h.split(/(<[^>]+>)/);
+  const fait = new Set();
+  for (let k=0;k<parts.length;k+=2){
+    for (const t of termes){
+      if (fait.has(t)) continue;
+      const re = new RegExp("(^|[^\\wÀ-ÿ])(" + t.replace(/[()]/g,"\\$&") + ")(?![\\wÀ-ÿ])", "i");
+      if (re.test(parts[k])){
+        fait.add(t);
+        parts[k] = parts[k].replace(re,(m,a,b)=>`${a}\u0001${t}\u0002${b}\u0003`);
+      }
+    }
+    parts[k] = parts[k].replace(/\u0001(.*?)\u0002(.*?)\u0003/g,(m,t,b)=>`<abbr class="glo" title="${esc(GLOSSAIRE[t])}">${b}</abbr>`);
+  }
+  h = parts.join("");
+  return h;
+}
+
+/* ===== Affichage d’une page ===== */
+function afficher(i, ligneCible){
+  idx = i;
+  const p = PAGES[i];
+  $("img").src = p.image;
+  $("img").alt = `Scan de la page ${p.num} du manuscrit (folio ${p.folio})`;
+  $("titrepage").textContent = `Page ${p.num}`;
+  $("ou").innerHTML = `<strong>Page ${p.num}</strong> (folio ${p.folio} du manuscrit), ${i+1} sur ${PAGES.length}`;
+  $("prec").disabled = i === 0;
+  $("suiv").disabled = i === PAGES.length - 1;
+
+  const toile = $("toile");
+  toile.querySelectorAll(".bande").forEach(b=>b.remove());
+  const b = p.bandes;
+  p.lignes.forEach((_,n)=>{
+    const d = document.createElement("div");
+    d.className = "bande"; d.dataset.n = n;
+    d.style.top = ((b.haut + n*b.pas)*100) + "%";
+    d.style.height = (b.hauteur*100) + "%";
+    d.style.left = (b.gauche*100) + "%";
+    d.style.width = ((b.droite-b.gauche)*100) + "%";
+    toile.appendChild(d);
+  });
+
+  $("lignes").innerHTML = p.lignes.map((l,n)=>`<li data-n="${n}" tabindex="0"><span>${decorer(l)}</span></li>`).join("");
+  $("lignes").querySelectorAll("li").forEach(li=>{
+    const n = +li.dataset.n;
+    li.addEventListener("mouseenter",()=>marquer(n));
+    li.addEventListener("focus",()=>marquer(n));
+    li.addEventListener("click",()=>marquer(n));
+  });
+
+  $("blocnotes").style.display = p.notes.length ? "" : "none";
+  $("notes").innerHTML = p.notes.map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("");
+
+  const lien = (ls)=>ls.map(n=>`<button type="button" data-l="${n}">ligne ${n}</button>`).join(", ");
+  $("personnes").innerHTML = p.personnes.map(([n,d,ls])=>`<li><strong>${esc(n)}</strong>, ${esc(d)} (${lien(ls)})</li>`).join("");
+  $("lieux").innerHTML = p.lieux.map(([n,d,ls])=>`<li>${esc(n)}, ${esc(d)} (${lien(ls)})</li>`).join("");
+  document.querySelectorAll(".index button[data-l]").forEach(bt=>bt.addEventListener("click",()=>allerLigne(+bt.dataset.l-1)));
+
+  const plein = norm(p.lignes.join(" "));
+  $("glossaire").innerHTML = Object.entries(GLOSSAIRE)
+    .filter(([t])=>new RegExp("(^|[^a-z])"+norm(t).replace(/[()]/g,"\\$&")+"(?![a-z])").test(plein))
+    .map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("");
+
+  try{ history.replaceState(null,"","#page-"+p.num); }catch(e){}
+  zoomReset();
+  if (ligneCible != null) setTimeout(()=>allerLigne(ligneCible),50);
+}
+
+function marquer(n){
+  document.querySelectorAll(".bande").forEach(b=>b.classList.toggle("vue", +b.dataset.n===n));
+  document.querySelectorAll("#lignes li").forEach(li=>li.classList.toggle("vue", +li.dataset.n===n));
+}
+function allerLigne(n){
+  const li = document.querySelector(`#lignes li[data-n="${n}"]`);
+  if (!li) return;
+  marquer(n);
+  li.scrollIntoView({block:"center",behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  li.focus({preventScroll:true});
+}
+
+/* ===== Zoom et déplacement ===== */
+let z=1, tx=0, ty=0;
+const cadre = $("cadre"), toile = $("toile");
+function appliquer(){
+  const w = cadre.clientWidth, h = cadre.clientHeight;
+  tx = Math.min(0, Math.max(w - w*z, tx));
+  ty = Math.min(0, Math.max(h - h*z, ty));
+  toile.style.transform = `translate(${tx}px,${ty}px) scale(${z})`;
+}
+function zoomer(f, cx, cy){
+  const w = cadre.clientWidth, h = cadre.clientHeight;
+  cx ??= w/2; cy ??= h/2;
+  const nz = Math.min(5, Math.max(1, z*f));
+  tx = cx - (cx - tx) * nz / z;
+  ty = cy - (cy - ty) * nz / z;
+  z = nz; appliquer();
+}
+function zoomReset(){ z=1; tx=0; ty=0; appliquer(); }
+$("zplus").onclick = ()=>zoomer(1.4);
+$("zmoins").onclick = ()=>zoomer(1/1.4);
+$("zreset").onclick = zoomReset;
+cadre.addEventListener("wheel", e=>{
+  e.preventDefault();
+  const r = cadre.getBoundingClientRect();
+  zoomer(e.deltaY < 0 ? 1.15 : 1/1.15, e.clientX-r.left, e.clientY-r.top);
+},{passive:false});
+const pts = new Map(); let dist0=0, z0=1;
+cadre.addEventListener("pointerdown", e=>{ cadre.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); cadre.classList.add("tire");
+  if (pts.size===2){ const [a,b]=[...pts.values()]; dist0=Math.hypot(a.x-b.x,a.y-b.y); z0=z; } });
+cadre.addEventListener("pointermove", e=>{
+  if (!pts.has(e.pointerId)) return;
+  const prev = pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if (pts.size===1){ tx += e.clientX-prev.x; ty += e.clientY-prev.y; appliquer(); }
+  else if (pts.size===2){ const [a,b]=[...pts.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y);
+    const r=cadre.getBoundingClientRect(); zoomer((z0*d/dist0)/z, (a.x+b.x)/2-r.left, (a.y+b.y)/2-r.top); }
+});
+const fin = e=>{ pts.delete(e.pointerId); if(!pts.size) cadre.classList.remove("tire"); };
+cadre.addEventListener("pointerup",fin); cadre.addEventListener("pointercancel",fin);
+cadre.addEventListener("dblclick", e=>{ const r=cadre.getBoundingClientRect(); z>1.5 ? zoomReset() : zoomer(2.5,e.clientX-r.left,e.clientY-r.top); });
+addEventListener("resize", appliquer);
+
+/* ===== Recherche dans tout le livre ===== */
+const q = $("q"), res = $("resultats");
+q.addEventListener("input", ()=>{
+  const t = norm(q.value.trim());
+  if (t.length < 2){ res.classList.remove("ouvert"); return; }
+  const trouves = [];
+  PAGES.forEach((p,i)=>{
+    p.lignes.forEach((l,n)=>{ if (norm(l).includes(t)) trouves.push({i,n,txt:l,p}); });
+    p.notes.forEach(([a,d])=>{ if (norm(a+" "+d).includes(t)) trouves.push({i,n:null,txt:`Note : ${a}`,p}); });
+  });
+  res.innerHTML = trouves.length
+    ? trouves.slice(0,60).map(r=>{
+        const s = norm(r.txt).indexOf(t);
+        const h = s<0 ? esc(r.txt) : esc(r.txt.slice(0,s))+"<mark>"+esc(r.txt.slice(s,s+t.length))+"</mark>"+esc(r.txt.slice(s+t.length));
+        return `<button type="button" data-i="${r.i}" data-n="${r.n ?? ""}">${h}<small>Page ${r.p.num}${r.n!=null?`, ligne ${r.n+1}`:""}</small></button>`;
+      }).join("")
+    : `<div class="vide">Aucun résultat pour « ${esc(q.value.trim())} ». Essayez une autre orthographe (Bochaton, Bochatton…).</div>`;
+  res.classList.add("ouvert");
+  res.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    res.classList.remove("ouvert");
+    const i=+b.dataset.i, n=b.dataset.n===""?null:+b.dataset.n;
+    if (i!==idx) afficher(i,n); else if (n!=null) allerLigne(n);
+  });
+});
+document.addEventListener("click", e=>{ if (!e.target.closest(".recherche")) res.classList.remove("ouvert"); });
+q.addEventListener("keydown", e=>{ if (e.key==="Escape") res.classList.remove("ouvert"); });
+
+/* ===== Navigation ===== */
+$("prec").onclick = ()=>idx>0 && afficher(idx-1);
+$("suiv").onclick = ()=>idx<PAGES.length-1 && afficher(idx+1);
+function depuisHash(){
+  const m = location.hash.match(/^#page-(\d+)$/);
+  const i = m ? PAGES.findIndex(p=>p.num===+m[1]) : -1;
+  afficher(i>=0 ? i : 0);
+}
+addEventListener("hashchange", depuisHash);
+
+/* ===== Chargement des fichiers de pages ===== */
+function charger(src){ return new Promise((ok,ko)=>{ const s=document.createElement("script"); s.src=src; s.onload=ok; s.onerror=()=>ko(src); document.head.appendChild(s); }); }
+(async ()=>{
+  try{
+    await charger("pages/glossaire.js");
+    await charger("pages/liste.js");
+    for (const n of LISTE_PAGES){ try{ await charger(`pages/${n}.js`); }catch(e){ console.warn("Page manquante :", e); } }
+    PAGES.sort((x,y)=>x.num-y.num);
+    if (!PAGES.length) throw "aucune page";
+    depuisHash();
+  }catch(e){
+    $("titrepage").textContent = "Impossible de charger les pages";
+    $("lignes").innerHTML = "<li><span>Vérifiez que les dossiers « pages » et « scans » sont bien à côté du fichier index.html.</span></li>";
+  }
+})();
+</script>
+</body>
+</html>
