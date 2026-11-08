@@ -364,7 +364,7 @@ function depuisHash(){
 addEventListener("hashchange", depuisHash);
 
 /* ===== Chargement des fichiers de pages ===== */
-function charger(src){ return new Promise((ok,ko)=>{ const s=document.createElement("script"); s.src=src; s.onload=ok; s.onerror=()=>ko(src); document.head.appendChild(s); }); }
+function charger(src){ return new Promise((ok,ko)=>{ const s=document.createElement("script"); s.src=src+"?v="+Date.now(); s.onload=ok; s.onerror=()=>ko(src); document.head.appendChild(s); }); }
 (async ()=>{
   try{
     await charger("pages/glossaire.js");
