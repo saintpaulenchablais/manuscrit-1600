@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Le manuscrit de 1600 – Saint-Paul-en-Chablais</title>
+<title>Le prieuré de Saint-Paul – terrier de 1668 – Saint-Paul-en-Chablais</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
@@ -48,6 +48,35 @@ header.tete{max-width:1240px;margin:0 auto;padding:2.2rem 1.25rem 1.2rem;display
 .resultats mark{background:var(--surligne);color:inherit}
 .resultats .vide{padding:.7rem .8rem;color:var(--gris);font-family:var(--sans);font-size:.9rem}
 
+nav.menu{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:flex;flex-wrap:wrap;gap:.2rem;font-family:var(--sans);font-size:.95rem}
+nav.menu a{padding:.6rem .8rem;color:var(--gris);text-decoration:none;border-bottom:2px solid transparent}
+nav.menu a:hover{color:var(--encre)}
+nav.menu a[aria-current="page"]{color:var(--encre);border-bottom-color:var(--rouge);font-weight:600}
+.vue-doc{max-width:860px;margin:0 auto;padding:1.8rem 1.25rem 3rem}
+.vue-doc h2{font-family:var(--fell);font-weight:400;font-size:2rem;margin:0 0 1rem}
+.vue-doc h3{font-family:var(--fell);font-weight:400;font-size:1.45rem;margin:2rem 0 .5rem}
+.vue-doc h4{font-family:var(--sans);font-size:.95rem;margin:1.3rem 0 .4rem}
+.vue-doc p,.vue-doc li{max-width:68ch}
+.chapo{font-size:1.15rem}
+.encart{background:var(--surface);border-left:3px solid var(--rouge);padding:.7rem 1rem;border-radius:3px}
+.source,.petit{font-family:var(--sans);font-size:.85rem;color:var(--gris)}
+.boutons{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.boutons a{font-family:var(--sans);font-size:.95rem;padding:.6rem 1rem;border-radius:4px;border:1px solid var(--trait);background:var(--surface);color:var(--encre);text-decoration:none}
+.boutons a.principal{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.credits{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--trait)}
+.colonnes-liste{columns:2 16rem;column-gap:2rem;padding-left:1.1rem}
+.tableau{border-collapse:collapse;font-family:var(--sans);font-size:.92rem;min-width:18rem}
+.tableau th,.tableau td{border-bottom:1px solid var(--trait);padding:.35rem .9rem .35rem 0;text-align:left}
+.tableau td:last-child,.tableau th:last-child{text-align:right}
+.filtre{width:100%;max-width:420px;padding:.6rem .9rem;border:1px solid var(--trait);background:var(--surface);border-radius:4px;font-family:var(--sans);font-size:.95rem;margin:.4rem 0 1.2rem}
+ul.liste-som,ul.liste-rep{list-style:none;padding:0;margin:0}
+ul.liste-som li,ul.liste-rep li{padding:.8rem 0;border-bottom:1px solid var(--trait)}
+.ref{display:inline-block;font-family:var(--sans);font-size:.8rem;margin-bottom:.25rem}
+.ref button{background:none;border:0;padding:0;color:var(--rouge);text-decoration:underline;text-underline-offset:2px;cursor:pointer;font:inherit}
+.ref .attente{color:var(--gris)}
+.rep-nom{font-weight:600}
+.rep-det{color:var(--gris);font-size:.95rem}
+.rep-det button{background:none;border:0;padding:0;color:var(--rouge);cursor:pointer;font-family:var(--sans);font-size:.8rem;text-decoration:underline;margin-left:.3rem}
 nav.pages{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:var(--sans);font-size:.92rem;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait)}
 nav.pages button{background:none;border:0;padding:.75rem .4rem;cursor:pointer;color:var(--rouge)}
 nav.pages button:disabled{color:var(--trait);cursor:default}
@@ -107,8 +136,8 @@ footer p{margin:.3rem 0;max-width:75ch}
 <body>
 <header class="tete">
   <div class="titre">
-    <h1>Le manuscrit de 1600</h1>
-    <p>Les possessions du monastère de Saint-Paul. Fonds patrimonial de la commune de Saint-Paul-en-Chablais : lire les pages, chercher un nom, une famille ou un lieu.</p>
+    <h1>Le prieuré de Saint-Paul</h1>
+    <p>Rénovation des terriers, acte notarié du 14 novembre 1668. Fonds patrimonial de la commune de Saint-Paul-en-Chablais.</p>
   </div>
   <div class="recherche" role="search">
     <label for="q" class="sr" style="position:absolute;left:-9999px">Rechercher dans le livre</label>
@@ -117,6 +146,57 @@ footer p{margin:.3rem 0;max-width:75ch}
   </div>
 </header>
 
+<nav class="menu" aria-label="Rubriques">
+  <a href="#accueil" data-vue="accueil">Présentation</a>
+  <a href="#page-17" data-vue="lire" id="lien-lire">Lire le manuscrit</a>
+  <a href="#sommaire" data-vue="sommaire">Sommaire des déclarations</a>
+  <a href="#repertoire" data-vue="repertoire">Répertoire des noms</a>
+  <a href="#autrefois" data-vue="autrefois">Saint-Paul autrefois</a>
+</nav>
+
+<section class="vue-doc" id="vue-accueil" hidden>
+  <h2>Le document</h2>
+  <p class="chapo">Ce manuscrit est un acte notarié du 14 novembre 1668. Il dresse l’inventaire des terres de Saint-Paul tenues du prieuré, et de ce que chaque famille lui doit chaque année. Il provient d’une librairie de livres anciens de Toulouse et a été acquis par la commune.</p>
+  <p>Il concerne des parcelles de terre tenues « en emphytéose perpétuelle », c’est-à-dire confiées pour toujours à des familles (les « albergataires »), situées surtout sur le territoire de Saint-Paul. Pour chacune, le détenteur doit au prieuré une redevance annuelle et perpétuelle, la cense ou la taille, payable à la Saint-Michel ou à la Toussaint.</p>
+  <p>Chaque déclaration rappelle aussi les déclarations précédentes des mêmes terres, parfois jusqu’au XVI<sup>e</sup> siècle : c’est pourquoi on y croise des dates comme 1532, 1609 ou 1628, et plusieurs générations d’une même famille.</p>
+  <div class="boutons">
+    <a class="principal" href="#page-17" id="bouton-lire">Lire le manuscrit</a>
+    <a href="#sommaire">Sommaire des déclarations</a>
+    <a href="#repertoire">Répertoire des noms</a>
+    <a href="#autrefois">Saint-Paul autrefois</a>
+  </div>
+  <h3>Comment lire le manuscrit</h3>
+  <p>Chaque page présente le scan du manuscrit et, en regard, sa transcription littérale, ligne par ligne. Les textes anciens n’ont en général ni ponctuation ni majuscules : selon l’usage en paléographie, les initiales des noms propres ont été mises en majuscules. Certaines pages proposent aussi une version en français actuel. Il n’a pas paru utile de moderniser tout le livre, car les mêmes formules reviennent pour chaque déclarant : le sommaire des déclarations permet de s’y retrouver.</p>
+  <p class="encart">Dans le répertoire et le sommaire, « feu » (noté « + » dans le manuscrit) signifie « défunt ». Un « albergataire » est celui qui tient une terre du prieuré contre une redevance.</p>
+  <h3>Interprétation</h3>
+  <div id="interpretation"></div>
+  <p class="credits petit">Manuscrit transcrit par Françoise Déage et Paulette Meynet-Piret. Répertoire, interprétation et sommaire : Françoise Déage.</p>
+</section>
+
+<section class="vue-doc" id="vue-sommaire" hidden>
+  <h2>Sommaire des déclarations</h2>
+  <p>La liste des déclarations contenues dans l’acte, avec les familles et les terres concernées. Cliquez sur une page pour l’ouvrir, quand elle est déjà en ligne.</p>
+  <input class="filtre" id="filtre-som" type="search" placeholder="Filtrer : un nom, un lieu-dit…" aria-label="Filtrer le sommaire">
+  <ul class="liste-som" id="liste-som"></ul>
+  <p class="credits petit">Sommaire établi par Françoise Déage.</p>
+</section>
+
+<section class="vue-doc" id="vue-repertoire" hidden>
+  <h2>Répertoire des noms</h2>
+  <p>Les familles, habitants, notaires et notables cités dans l’acte, avec leurs liens de parenté et leurs fonctions. Un outil précieux pour les généalogistes.</p>
+  <input class="filtre" id="filtre-rep" type="search" placeholder="Filtrer : un nom de famille…" aria-label="Filtrer le répertoire">
+  <ul class="liste-rep" id="liste-rep"></ul>
+  <p class="credits petit">Répertoire établi par Françoise Déage.</p>
+</section>
+
+<section class="vue-doc" id="vue-autrefois" hidden>
+  <h2>Saint-Paul autrefois</h2>
+  <p>Les habitants et les hameaux de Saint-Paul à travers trois époques.</p>
+  <div id="recensement"></div>
+  <p class="credits petit">Recensement et topographie relevés par Françoise Déage.</p>
+</section>
+
+<div id="vue-lire" hidden>
 <nav class="pages" aria-label="Pages">
   <button id="prec" type="button">‹ Page précédente</button>
   <div class="ou" id="ou"></div>
@@ -170,10 +250,11 @@ footer p{margin:.3rem 0;max-width:75ch}
     </div>
   </section>
 </main>
+</div>
 
 <footer>
-  <p>Manuscrit de 1600 sur les possessions du monastère de Saint-Paul, retrouvé chez un bouquiniste de Toulouse et acquis par la commune de Saint-Paul-en-Chablais. Transcription et notes : Madame Déage.</p>
-  <p>Version de travail : quelques pages pour l’instant, le reste suivra.</p>
+  <p>Le prieuré de Saint-Paul, rénovation des terriers : acte notarié du 14 novembre 1668, provenant d’une librairie de livres anciens de Toulouse et acquis par la commune de Saint-Paul-en-Chablais. Transcription : Françoise Déage et Paulette Meynet-Piret. Répertoire, interprétation et sommaire : Françoise Déage.</p>
+  <p>Version de travail : quelques pages en ligne pour l’instant, les autres suivront. Les textes en français actuel marqués « version de travail » sont en attente de relecture.</p>
 </footer>
 
 <script>
@@ -213,6 +294,7 @@ function decorer(ligne){
 function afficher(i, ligneCible){
   idx = i;
   const p = PAGES[i];
+  montrerVue("lire");
   $("img").src = p.image;
   $("img").alt = `Scan de la page ${p.num} du manuscrit (folio ${p.folio})`;
   $("titrepage").textContent = `Page ${p.num}`;
@@ -356,10 +438,50 @@ q.addEventListener("keydown", e=>{ if (e.key==="Escape") res.classList.remove("o
 /* ===== Navigation ===== */
 $("prec").onclick = ()=>idx>0 && afficher(idx-1);
 $("suiv").onclick = ()=>idx<PAGES.length-1 && afficher(idx+1);
+const DOCS = {"interpretation": "<p>Le titre :</p>\n<p>Reconnaissance (confession) de noble et généreux seigneur Antoine Vespasian fils de feu noble et généreux seigneur Gédéon de Gribaldy seigneur de Farge.</p>\n<p>Le seigneur Antoine Vespasian de Gribaldy est tout au long du manuscrit dénommé « confessant »</p>\n<p>Le 14 novembre 1668, Noël Tavernier, notaire ducal, royal, commissaire et bourgeois d’Evian, est chargé par le Révérend Jean Brelaz alors curé de Saint-Paul agissant en procureur de Révérend Jean Baptiste de Castagnery prieur et commendataire perpétuel du prieuré de Saint-Paul, d’établir un nouvel inventaire des terres, biens, hommages et reconnaissances du prieuré, en remplacement de l’acte du 02 mai 1664 reçu et signé par Maître Antoine Dubouloz notaire ducal et royal du 02 mai 1664.</p>\n<p>Ce nouvel acte est rédigé en faveur de noble et révérend seigneur messire Jean Baptiste de Castagnery alors prieur et commendataire perpétuel du prieuré de Saint Paul et de ses successeurs futurs prieurs auxquels appartiendront les biens, terres et hommages.</p>\n<p>Le principal notaire est Maître Noël Tavernier agissant pour le noble et généreux seigneur Antoine Vespasian de Gribaldy, seigneur de Farge. Ce dernier agit de son « bon gré, pure franche et liberalle volonté » pour lui-même, les siens et ses héritiers. Il confirme et reconnait le noble et révérend seigneur Jean Baptiste de Castagnery prieur et commendataire perpétuel du prieuré de Saint Paul ainsi que ses successeurs en fief lige.</p>\n<p>fied ou fief liege ou lige : terre noble qu’un vassal tenait d’un seigneur sous condition force et hommage et de lui fournir certains revenus.</p>\n<p>Ces biens avaient été reconnus en faveur de feu noble et révérend seigneur messire Jean François de Blonnay qui de son vivant était prieur et commendataire de Saint Paul. lesdits biens sont répertoriés par egrège Jean Baud notaire en remplacement de egrège André Burnet aussi notaire du 06 décembre 1609. Les biens et terres appartiennent à Claudaz, fille de feu Bernard Bochatton de Poÿse (aujourd’hui Poêse), elle est veuve de Nicolas de Blonnay. Les biens sont reconnus par feu Maître Jean François Piccot notaire en remplacement de feu egrège André Burnet aussi notaire, par un acte daté du 08 mai 1628.</p>\n<p>Les albergataires Loÿs fils de feu Blais BONDAZ, sa femme Jaquemaz fille de feu Jean MICHAUD de Saint Paul agissaient tant à leurs noms que de Françoise (sœur de Jaquemaz) et femme de Philibert fils de feu Blais BONDAZ. A savoir : une pièce de terre et pré, contenant environ 2 poses et située au lieudit « Les Combes », sur le territoire de Saint Paul. Elle était en deux parcelles réunies en une seule et située de la manière suivante :</p>\n<ul><li>à l’est, elle était contiguë à la terre du confessant et auparavant appartenant à Pierre fils de feu François LAURENT.</li><li>à l’ouest contiguë à celle qui était à Paul et François fils de feu André LAURENT.</li><li>située en dessous ……</li><li>située en dessus le long du chemin public</li></ul>\n<p>La redevance est répartie comme suit :</p>\n<ul><li>le quart et sexte d’un quart et les sexte de quarante huitième parts du douzain</li><li>autre quart de froment, à la mesure d’Evian</li><li>en meneydes, 7 deniers les deux parts et sexte d’un et le quart et sexte du douzain d’un autre denier genevois</li></ul>\n<p>A payer tous les ans et perpétuellement à la fête de Toussaint</p>", "repertoire": [["BAUD Jean", ["feu égrège notaire et commissaire substitué de feu égrège André BURNET"]], ["BERNEX Jeanne", []], ["BIDAL Simon", ["Habite Saint Paul"]], ["BOCHATTON André", ["Aïeul de Thonÿ, Antoine, Jean Claudÿ"]], ["BOCHATTON Claudaz", ["Fille de feu Bernard", "Veuve de Nicolas de BLONNAY"]], ["BOCHATTON François et Blais (M)", ["Enfants de Bernard"]], ["BOCHATTON Gabriel", ["Fils de feu Gabriel habite Poêse", "Tuteur de François et Blaise (F) enfants de feu Bernard"]], ["BOCHATTON Martin", []], ["BOCHATTON Thonÿ, Antoine, Jean, Claudÿ", ["Fils de feu Claudÿ"]], ["BOCHET François", ["Fils de feu Mermet", "Bisaïeul de Claudaz", "Tuteur de Thivent fils de feu Jean BOCHET, son neveu en l’année 11/03/1532"]], ["BOCHET François", ["Fils de feu Paul", "Tuteur de Thivent et d’Etienne fils de feu Jean, neveu de François"]], ["BOCHET Jean, Loÿs", ["Enfants de Mermet"]], ["BOCHET Françoise, Antoine (F), Claudaz", ["Filles de feu Jean"]], ["BOCHET Perrod, André", []], ["BLONNAY (de) Françoise", ["Veuve de Claude LAURENT"]], ["BLONNAY (de) Jaques", ["Honnête fils de feu André"]], ["BLONNAY (de) Jean", ["Honorable fils de Honorable André"]], ["BLONNAY (de) Jean François", ["feu noble révérend seigneur messire, prieur commendataire du prieuré de Saint Paul 06/12/1607", "On le trouve cité en 1615"]], ["BLONNAY (de) Gabrielle et Jeanne", ["Filles de feu noble Jaques"]], ["BONDAZ Blais (M)", ["Tuteur de Rollet BRON alias CHRISTIN"]], ["BONDAZ Loÿs", ["Fils de feu Blais et Jaquemaz sa femme fille de feu Jean MICHAUD de Saint Paul"]], ["BOUGUIER (BOUGNIER) François", ["Fils de feu Jaques", "BORGNIER, BORQUIER ou BORGUIER Aimé", "Fils de feu Paul"]], ["BRELAZ Jean", ["Révérend messire, prêtre, curé de Saint Paul"]], ["BRON alias CHRISTIN Rollin ou Rolet, Guilleme", ["Fils de feu François"]], ["BURNET André", ["feu Egrège notaire, dernier commissaire le 06/12/1609 et 08/05/1628"]], ["CASPON Charlotte (damoiselle)", ["Veuve de feu noble Jaques fils de feu noble François"]], ["DUCREST", []], ["CASTAGNERY (de) Jean Baptiste", ["Révérend seigneur messire et prieur commendataire du prieuré de Saint Paul"]], ["CHEVALLEY Thonÿ, Nicolas, Pierre", ["Fils de feu Mermet"]], ["CHEVALLEY Loÿse", ["Femme de Loÿs"]], ["CLAUDE Philippe", []], ["COLLIARD Louÿse", ["Femme de Louÿs CHEVALLIER"]], ["COLLOGNIER Charles", ["Notaire"]], ["COLLOMB Claudÿ", ["Fils de feu Loÿs"]], ["CURTILLIER Jaques", []], ["DUBOULOZ Antoine", ["Notaire ducal royal (02/05/1664)"]], ["DUBOULOZ Antoine", ["Notaire ducal témoin requis au présent acte"]], ["DUCREST Charles", ["Noble"]], ["DUCREST Jean", ["Révérend messire prêtre"]], ["DUFOUR Jaques", []], ["DUNANT les frères", ["Nobles seigneurs de Grillier"]], ["DUPUIS Alexandre", ["Maître"]], ["DUTRUEL Blais (M)", ["Tisserand"]], ["DUTRUEL Claude, Jean François et Collet", ["Détiennent des terres en Praufemaux"]], ["DUTRUEL Claude", ["Fils de feu Nicolas"]], ["DUTRUEL Jean", ["Maître"]], ["DUTRUEL Jean François", ["Fils d’Etienne, habite Pramont"]], ["DUTRUEL Michel", ["Fils de feu André"]], ["DUTRUEL Rolin", ["Fils de feu Claude, habite Poêse"]], ["DUTRUEL Rond", ["A plusieurs enfants non nommés"]], ["EXCOFFIER Claude", ["Habite Saint Paul"]], ["FLEURY Jenette", ["Veuve de Claude PIOTHON de Cumillier"]], ["GRANJUX Loÿs", ["Habite Saint Paul"]], ["GRIBALDY (de) Antoine Vespazian", ["Noble seigneur de Farges", "Fils de feu Gédéon"]], ["GRILLIER (de)", ["Seigneurs de Grillier cités dans l’acte du 06/03/1532"]], ["GUILLOT Claudÿ (F)", ["Veuve de Claude DUTRUEL dit PIERRA GROSSA"]], ["JOLY alias GOY Paul", []], ["JOUX (de la) Jean", []], ["LAURENT André et François", ["Fils de feu Nicolas"]], ["LAURENT André", ["Habite la Bochennaz, hameau de Saint Paul"]], ["LAURENT Antoine, Mermet, Gabriel, Jean, Sébastian", ["Fils de feu Paul"]], ["LAURENT Blais (M), Loÿs", ["Enfants de feu Philibert"]], ["LAURENT François, Paul", ["Fils de feu André"]], ["LAURENT François et Nicolas", ["Fils de feu François"]], ["LAURENT Gabriel", ["Fils de feu François l’aîné"]], ["LAURENT Loÿse (F)", ["Fille de feu André"]], ["LAURENT Pierre", ["Fils de feu François", "Egrège et châtelain d’Evian"]], ["LUYSOD", ["Cette famille détient des terres en indivis"]], ["MARCHAN Jean et Thonÿ", ["Fils de feu Bernard"]], ["MARCHAND Claudine", ["Veuve de Nicod BAUDET", "Elle a plusieurs filles"]], ["MICHAUD François", ["Père de Jaquemaz"]], ["PASSOD André", ["Détient une terre à Saint Paul", "Tuteur de Rollet BRON alias CHRISTIN"]], ["PICOT Jean François", ["Notaire et commissaire"]], ["PINAUD Georges", ["Notaire ducal témoin requis du présent acte"]], ["PIOTON Paul, Jean, François", ["Fils de feu Claude"]], ["POCHAT Jaques", ["Noble"]], ["Révérendes Dames de la Visitation de Thonon", ["Détiennent des terres à Saint Paul"]], ["SAUTHEY ou SANTHEY Rolin", ["Les frères SAUTHEY détiennent des terres à St Paul"]], ["SERRIAN André", ["Fils de feu Pierre", "Détient une terre à Saint Paul"]], ["TAVERNIER Noel", ["Notaire ducal royal", "Bourgeois d’Evian", "Commissaire député pour réalisé l’acte du 14/11/1668"]], ["THIOLLEY Jean", ["Fils de feu Paul"]], ["VERNAZ Pernette", ["Veuve de noble Jaques de BLONNAY"]], ["VINZIER (de) Pernette", ["Fille de feu Antoine Jaques", "Veuve de Claude BOCHET de Poêse"]]], "sommaire": [[10, 16, 13, 24, ["BOCHATON Claudaz, veuve de Nicolas de BLONNAY", "LAURENT André fils de feu André", "BONDAZ (BODAZ) Blais", "BRON alias CHRISTIN Rollin fils de feu François", "Une terre comprenant 3 parcelles au territoire de Saint Paul lieudit La Bochenaz"]], [13, 25, 15, 25, ["EXCOFFIER Claude", "Une terre et pré situés en « Les Combes »"]], [16, 1, 19, 6, ["BONDAZ Blais à son nom et tuteur de BRON alias CHRISTIN Rollet et Guillemme fils de feu François", "Une terre et pré situés à « La Bochenaz » devant chez les LAURENT"]], [19, 7, 24, 8, ["Révérend de BLONNAY Jean François prieur", "BOCHATTON Claudaz fille de feu Bernard veuve de Nicolas de BLONNAY (auparavant détenue par BOCHET François fils de feu Mermet et bisaïeul de Claudaz)", "Les biens sont reconnus depuis le 06/12/1609", "Un pré situé à « La Bochenaz » lieudit devant chez les LAURENT"]], [24, 9, 28, 10, ["LAURENT Gabriel fils de feu François (dit l’aîné)", "Le bien est reconnu depuis le 12/07/1612 par BONDAZ Blais comme tuteur de Rollin fils de feu François BRON alias", "CHRISTIN", "Une pièce tant curtil que chenevier au lieu « La Bochenaz » devant chez les LAURENT"]], [28, 10, 31, 12, ["LAURENT Antoine fils de feu Paul tant à son nom que ses frères Mermet et Gabriel", "Biens reconnus depuis le 12/07/1607", "Les 2 parts d’une terre contenant environ 02 poses et les 03 parts d’une autre pose sises à « La Bochenaz » lieudit Damont la grange. Ces terres ont été réunies."]], [31, 12, 35, 11, ["noble VERNAZ Pernette veuve de feu noble Jaques donné de BLONNAY agissant de son autorité au nom dudit Jaques et au nom de nobles Gabrielle et Jeanne de BLONNAY sœurs de Claudy de BLONNAY et filles de Jaques et et Pernette", "Biens reconnus par acte le 08/11/1607 et le 02/03/1632", "Jenette FLEURY veuve de Claude PIOTHON de Cumillier", "Une terre contenant environ 02 poses située au « Crest", "Radu » à présent dit en la fin de Cumillier"]], [35, 12, 36, 21, ["PIOTTON Paul, Jean et François fils de feu Claude", "Terre, pré et léchère sis au lieudit de Cumillier (contenant 09 poses"]], [36, 21, 38, 16, ["Le même albergataire une terre à présent Léchère et Bossonnailles située au Cumillier. Ces terres dépendent soit au seigneur de Saint Paul soit du seigneur de Larringe"]], [38, 16, 41, 10, ["JOLY alias GOY Paul fils de feu Jacques de Poêse depuis le 12/03/1532", "Une terre et genevrier situés « au Crest Varchaix » sous", "Praz nouvellement appelé chez Borgnery"]], [41, 10, 44, 25, ["DUTRUEL Rolin fils de feu Claude de Poêse ou de GROSSE", "Pierre (auparavant détenu par la famille LAURENT)", "Un pré contenant environ le tier quart et sizain d’une seyturine situé à « La Bochenaz » sous chez les LAURENT dict « au pré Sonjon » (hameau de Bernex)"]], [45, 1, 50, 1, ["Gabriel fils de feu Gabriel BOCHATTON de Poêse agissant comme tuteur de François et Blaise enfants de feu Bernard BOCHATTON (biens tenus auparavant par la famille LAURENT) et maintenant en indivis avec François fils de feu Francillion BORGNIER", "Un pré situé sous chez les LAURENT lieudit « Pré Sonjon »"]], [50, 2, 54, 2, ["BOCHATON Gabriel fils de feu Gabriel à son nom et comme tuteur de BOCHATON François et Blaise (fille) enfants de +", "Bernard", "PIOTON François et Paul fils de feu Claude (en indivis)"]], [54, 2, 57, 7, ["BOCHATTON Gabriel fils de feu Gabriel auparavant de Loÿs et Jean fils de feu Mermet BOCHET"]], [57, 8, 60, 1, ["terre reconnue depuis le 28/11/1609 à LAURENT André fils de feu André de la Bochenaz et auparavant à BOCHET dit BOCHATTON François fils de feu Paul comme tuteur de son neveu Thivent fils de feu Jean"]], [60, 1, 65, 9, ["autres terres concernant les mêmes albergataires"]], [65, 10, 67, 10, ["DUTRUEL Claude et Philippe fils de feu François et comme tuteurs de Paul Antoine Loÿs Thivent Pierre DUTRUEL, leurs neveux"]], [67, 10, 70, 2, ["EXCOFFIER Claude fils de feu François"]], [70, 3, 72, 25, ["LAURENT Antoine fils de feu Paul et au nom de ses frères Mermet et Gabriel"]], [72, 25, 75, 2, ["DUTRUEL Jean François fils de feu Etienne tant à son nom et au nom de son frère Collet"]], [75, 3, 76, 21, ["autres terres concernant les mêmes albergataires"]], [76, 22, 78, 12, ["autres terres concernant les mêmes albergataires"]], [78, 12, 79, 5, ["autres terres concernant les mêmes albergataires"]], [79, 6, 80, 23, ["terre à présent pré située sous Poêse lieudit Cherpenoz et détenue par les mêmes albergataires"]], [80, 24, 83, 22, ["une terre nouvellement en division entre noble révérend", "Pancras DUCREST prêtre et sa sœur située sous Poêse lieudit « Champ Montagnier »"]], [83, 22, 85, 7, ["DUTRUEL Claude fils de feu François de Poêse à son nom au nom de son frère Philippe et de leurs neveux Paul,", "Antoine, Loÿs et Thivent"]], [85, 8, 86, 15, ["Révérend messire prêtre DUCREST Pancras d’une terre en indivis et une autre moitié d’une pièce d’oche (jardin fermé de haies)"]], [86, 16, 88, 22, ["le même albergataire tenant l’autre moitié d’une terre devenue chenevier sise vers Poêse. Sur cette terre le seigneur confessant doit au vénérable curé ou vicaire de St Paul 2 deniers genevois tous les ans"]], [88, 22, 90, 15, ["le même albergataire tenant une terre et un verger vers", "Poêse lieudit au Cherpenoz"]], [90, 15, 92, 21, ["le même albergataire, le révérend messire DUCREST", "Pancras et sa sœur au territoire de Poêse lieudit en Curtareÿ sus Chanta Caillie"]], [92, 21, 94, 21, ["JOLY alias GOY Paul fils de Jaques, un curtil au lieu de Poêse"]], [94, 22, 98, 19, ["le même albergataire pour une maison, grange et curtil situés au lieu de Poêse. Si celui-ci devait mourir sans laisser d’héritiers légitimes les biens reviendraient au révérend seigneur de Saint-Paul"]], [98, 19, 103, 10, ["le même albergataire, une terre size au lieu « les Corbassières »", "Sur cette terre le seigneur confessant doit tous les ans à la Confrèrie du Saint Esprit un quart de froment à la mesure d’Evian"]], [103, 10, 105, 15, ["BOCHET Loÿs fils de feu Mermet de Poêse, une terre située lieudit « derrière le four »"]], [105, 16, 108, 2, ["le même albergataire pour un pré sis en Pramont et en les Corbassières"]], [108, 2, 110, 23, ["le même albergataire pour une terre sise derrière Poêse"]], [110, 14, 112, 1, ["le même albergataire pour un pré sis en Paramont"]], [112, 1, 115, 17, ["BOCHET Jean fils de feu Mermet, un pré (anciennement classé terre) sis « sous Poêse » lieudit au Petit Cherpenoz. Si celui- ci venait à décéder sans héritiers légitimes, cette terre reviendrait au révérend seigneur de Saint-Paul et à ses successeurs"]], [115, 17, 118, 1, ["de VINZIER Pernette fille de feu Antoine Jaques et veuve de BOCHET Claude pour les deux parts côté est d’un curtil", "(auparavant chenevier) sis à Poêse"]], [118, 2, 121, 19, ["Biens reconnus depuis le 26/06/1615", "Noble François fils de feu Michel DUCREST", "Antoine fils de feu Paul LAURENT à son nom et pour ses frères Mermet et Gabriel", "Une terre située « en Croix » alias au « Crest Damont » et appelé à présent « en La Lanche »", "Sous condition que si l’héritage choses et biens dudit seigneur confessant tombent en « main morte » cette terre reviendrait par plein droit au révérend seigneur prieur et à ses successeurs"]], [121, 20, 124, 21, ["Les biens omis par feu André BURNET , notaire en date du 06/03/1532", "LAURENT Antoine fils de feu Paul et de ses frères Mermet et Gabriel, soit les deux parts d’un pré situé en Praufemaux"]], [124, 22, 127, 20, ["Le même albergataire omis le 12/03/1532 et au présent acte BOCHET François fils de Paul à son nom et comme tuteur d’Etienne fils de feu Jean son neveu un pré située au Praufemaux et les Fontaverts"]]], "recensement": "<h3>Saint-Paul en 1569</h3><p class=\"source\">Source : Archives départementales de la Savoie (SA 2027).</p>\n<h4>Les habitants recensés</h4><p class=\"petit\">« Misérable » désigne un foyer très pauvre.</p><ul class=\"colonnes-liste\"><li>Noble et puissant Gabriel de Blonnay, seigneur dudit lieu</li><li>Messire Gabriel Germain de Blonnay, prieur du prieuré dudit lieu</li><li>Noble François Ducrest, châtelain dudit lieu</li><li>Noble Guillaume de Blonnay</li><li>Noble Jacques de Blonnay</li><li>Me Claude du Tent, notaire ducal</li><li>Honorable François du Tent</li><li>Jehan Degra Banderez, dudit lieu</li><li>Me Gabriel Bochez, notaire ducal dudit lieu</li><li>Loÿs Excoffier</li><li>André Rosay (misérable)</li><li>Michel Rebet (misérable)</li><li>André Martin Metral, dudit lieu (misérable)</li><li>Claude Proton (misérable)</li><li>Les héritiers de feu Michel Fandyer (misérable)</li><li>Jehan Fandyre</li><li>Jehan Pellux (misérable)</li><li>Jenon Frandyre (misérable)</li><li>François Noro (misérable)</li><li>Claude Chomppa (misérable)</li><li>André Collon (misérable)</li><li>Les héritiers de feu Blaise Collon (misérables)</li><li>Symond Collon (misérable)</li><li>Pierre Collon</li><li>Philibert Bondat (misérable)</li></ul>\n<h4>Les hameaux et leurs foyers (« feux »)</h4><table class=\"tableau\"><thead><tr><th>Lieu-dit</th><th>Foyers</th></tr></thead><tbody>\n<tr><td>Chamsoys</td><td>3</td></tr>\n<tr><td>Prallis</td><td>6</td></tr>\n<tr><td>Lyonnaz ou Lyonnet</td><td>3</td></tr>\n<tr><td>Chez Rebets</td><td>4</td></tr>\n<tr><td>En Soires ou Serres</td><td>11</td></tr>\n<tr><td>Les Faverges</td><td>5</td></tr>\n<tr><td>Fresnes ou Frenay</td><td>9</td></tr>\n<tr><td>La Bona ou La Beunaz</td><td>6</td></tr>\n<tr><td>La Gottetaz</td><td>5</td></tr>\n<tr><td>Rosoyres ou Roseires</td><td>2</td></tr>\n<tr><td>Prombert ou Praubert</td><td>7</td></tr>\n<tr><td>Floyer</td><td>6</td></tr>\n<tr><td>Exigel</td><td>5</td></tr>\n<tr><td>Poêse ou Poëse</td><td>9</td></tr>\n<tr><td>La Bochena et les Proton</td><td>6</td></tr>\n</tbody></table>\n<h3>Saint-Paul en 1868</h3><p class=\"source\">Cadastre français</p><ul class=\"colonnes-liste\"><li>Les Faverges</li><li>La Beunaz</li><li>La Gottetaz</li><li>Frênay</li><li>Chez Gaillet</li><li>Praubert</li><li>Rosieres</li><li>Chez Charoin</li><li>Chez Bouchex</li><li>Piolan</li><li>Les Ingles</li><li>Chez Thiollay</li><li>Chez Collomb</li><li>Chez Dufrênay</li><li>Serre</li><li>Chez Bochet</li><li>Place</li><li>Lyonnet</li><li>Maravant</li><li>Chez Chevallay</li><li>Guenneval</li><li>Gremy</li><li>Chez Burquier</li><li>Pierre Grosse</li><li>Forchez</li><li>Poëse</li><li>Vers le Four</li></ul>\n<h3>Saint-Paul en 1886</h3><p class=\"source\">Topographie</p><ul class=\"colonnes-liste\"><li>Chef-lieu</li><li>Coppoz-les-lanches</li><li>Poëse</li><li>Chez Potraz</li><li>Forchex-Pierre Grosse</li><li>Chez Burquier</li><li>Chez Les Laurent</li><li>Chez Collomb</li><li>Gremey</li><li>Lyonnet</li><li>Chez Thiollay</li><li>Les Borgels</li><li>Chez Bouchex</li><li>Piolan</li><li>Praubert</li><li>Le Bosson</li><li>Roseires</li><li>Chez Guillet</li><li>La Beunaz</li><li>Les Faverges</li><li>Serres</li><li>Chez Bochet</li><li>Le Maravant</li></ul>"};
+let vueCourante = "";
+function montrerVue(v){
+  vueCourante = v;
+  for (const n of ["accueil","lire","sommaire","repertoire","autrefois"]) $("vue-"+n).hidden = (n!==v);
+  document.querySelectorAll("nav.menu a").forEach(a=>{ if (a.dataset.vue===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+}
 function depuisHash(){
-  const m = location.hash.match(/^#page-(\d+)$/);
-  const i = m ? PAGES.findIndex(p=>p.num===+m[1]) : -1;
-  afficher(i>=0 ? i : 0);
+  const h = location.hash;
+  const m = h.match(/^#page-(\d+)$/);
+  if (m){
+    const i = PAGES.findIndex(p=>p.num===+m[1]);
+    afficher(i>=0 ? i : 0);
+    return;
+  }
+  const v = {"#sommaire":"sommaire","#repertoire":"repertoire","#autrefois":"autrefois"}[h] || "accueil";
+  montrerVue(v);
+  scrollTo(0,0);
+}
+function construireDocs(){
+  $("interpretation").innerHTML = DOCS.interpretation;
+  $("recensement").innerHTML = DOCS.recensement;
+  const premiere = "#page-" + PAGES[0].num;
+  $("lien-lire").href = premiere; $("bouton-lire").href = premiere;
+  /* Sommaire */
+  $("liste-som").innerHTML = DOCS.sommaire.map(([p1,l1,p2,l2,txt],k)=>{
+    const i = PAGES.findIndex(p=>p.num===p1);
+    const j = PAGES.findIndex(p=>p.num>p1 && p.num<=p2);
+    const lien = i>=0
+      ? `<button type="button" data-i="${i}" data-l="${l1-1}">Page ${p1}, ligne ${l1}</button> à page ${p2}, ligne ${l2}`
+      : j>=0
+        ? `Page ${p1}, ligne ${l1} à page ${p2}, ligne ${l2} : <button type="button" data-i="${j}" data-l="0">suite en ligne à partir de la page ${PAGES[j].num}</button>`
+        : `Page ${p1}, ligne ${l1} à page ${p2}, ligne ${l2} <span class="attente">(pas encore en ligne)</span>`;
+    return `<li data-t="${esc(norm(txt.join(" ")))}"><span class="ref">${lien}</span><div>${txt.map(esc).join("<br>")}</div></li>`;
+  }).join("");
+  $("liste-som").querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>afficher(+b.dataset.i,+b.dataset.l));
+  /* Répertoire */
+  $("liste-rep").innerHTML = DOCS.repertoire.map(([nom,det])=>{
+    const cle = nom.split(/\s+/)[0];
+    return `<li data-t="${esc(norm(nom+" "+det.join(" ")))}"><span class="rep-nom">${esc(nom)}</span><div class="rep-det">${det.map(esc).join("<br>")}${det.length?"<br>":""}<button type="button" data-q="${esc(cle)}">Chercher dans le manuscrit</button></div></li>`;
+  }).join("");
+  $("liste-rep").querySelectorAll("button[data-q]").forEach(b=>b.onclick=()=>{ q.value=b.dataset.q; q.dispatchEvent(new Event("input")); q.focus(); scrollTo(0,0); });
+  const filtrer = (inp,ul)=>inp.addEventListener("input",()=>{ const t=norm(inp.value.trim()); ul.querySelectorAll("li").forEach(li=>li.hidden = t && !li.dataset.t.includes(t)); });
+  filtrer($("filtre-som"),$("liste-som")); filtrer($("filtre-rep"),$("liste-rep"));
 }
 addEventListener("hashchange", depuisHash);
 
@@ -372,6 +494,7 @@ function charger(src){ return new Promise((ok,ko)=>{ const s=document.createElem
     for (const n of LISTE_PAGES){ try{ await charger(`pages/${n}.js`); }catch(e){ console.warn("Page manquante :", e); } }
     PAGES.sort((x,y)=>x.num-y.num);
     if (!PAGES.length) throw "aucune page";
+    construireDocs();
     depuisHash();
   }catch(e){
     $("titrepage").textContent = "Impossible de charger les pages";
