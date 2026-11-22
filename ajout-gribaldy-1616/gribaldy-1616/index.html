@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rôle des biens de Guillaume de Gribaldy (1616) – Saint-Paul-en-Chablais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#E6E9E7; --surface:#F7F8F6; --encre:#1E1B18; --gris:#5B605D; --trait:#C4CAC6;
+  --rouge:#9E1B2C; --surligne:rgba(158,27,44,.16); --cadre:#2F3A36;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --fell:"IM Fell DW Pica", Georgia, serif;
+  --sans:system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fond:#171A19; --surface:#202423; --encre:#E7E4DE; --gris:#A3A9A5; --trait:#3A403D;
+    --rouge:#E0606E; --surligne:rgba(224,96,110,.22); --cadre:#0E100F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#171A19; --surface:#202423; --encre:#E7E4DE; --gris:#A3A9A5; --trait:#3A403D;
+  --rouge:#E0606E; --surligne:rgba(224,96,110,.22); --cadre:#0E100F; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--fond);color:var(--encre);font-family:var(--serif);font-size:1.0625rem;line-height:1.6}
+a{color:var(--rouge)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rouge);outline-offset:2px}
+
+header.tete{max-width:1240px;margin:0 auto;padding:2.2rem 1.25rem 1.2rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:end;justify-content:space-between}
+.titre h1{font-family:var(--fell);font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.02;margin:0;letter-spacing:-.01em}
+.titre p{margin:.5rem 0 0;color:var(--gris);font-size:1rem}
+.recherche{flex:1 1 280px;max-width:420px;position:relative}
+.recherche input{width:100%;padding:.65rem .9rem;border:1px solid var(--trait);background:var(--surface);border-radius:4px;font-family:var(--sans);font-size:.95rem}
+.resultats{position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);background:var(--surface);border:1px solid var(--trait);border-radius:4px;max-height:60vh;overflow:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.resultats.ouvert{display:block}
+.resultats button{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--trait);padding:.55rem .8rem;cursor:pointer}
+.resultats button:hover{background:var(--surligne)}
+.resultats small{display:block;font-family:var(--sans);color:var(--gris);font-size:.78rem}
+.resultats mark{background:var(--surligne);color:inherit}
+.resultats .vide{padding:.7rem .8rem;color:var(--gris);font-family:var(--sans);font-size:.9rem}
+
+nav.menu{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:flex;flex-wrap:wrap;gap:.2rem;font-family:var(--sans);font-size:.95rem}
+nav.menu a{padding:.6rem .8rem;color:var(--gris);text-decoration:none;border-bottom:2px solid transparent}
+nav.menu a:hover{color:var(--encre)}
+nav.menu a[aria-current="page"]{color:var(--encre);border-bottom-color:var(--rouge);font-weight:600}
+.vue-doc{max-width:860px;margin:0 auto;padding:1.8rem 1.25rem 3rem}
+.vue-doc h2{font-family:var(--fell);font-weight:400;font-size:2rem;margin:0 0 1rem}
+.vue-doc h3{font-family:var(--fell);font-weight:400;font-size:1.45rem;margin:2rem 0 .5rem}
+.vue-doc h4{font-family:var(--sans);font-size:.95rem;margin:1.3rem 0 .4rem}
+.vue-doc p,.vue-doc li{max-width:68ch}
+.chapo{font-size:1.15rem}
+.encart{background:var(--surface);border-left:3px solid var(--rouge);padding:.7rem 1rem;border-radius:3px}
+.source,.petit{font-family:var(--sans);font-size:.85rem;color:var(--gris)}
+.boutons{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.boutons a{font-family:var(--sans);font-size:.95rem;padding:.6rem 1rem;border-radius:4px;border:1px solid var(--trait);background:var(--surface);color:var(--encre);text-decoration:none}
+.boutons a.principal{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.credits{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--trait)}
+dl.lexique{margin:0}
+dl.lexique dt{font-weight:600;margin-top:1.1rem}
+dl.lexique dd{margin:.2rem 0 0;padding-bottom:1rem;border-bottom:1px solid var(--trait)}
+dl.lexique dd p{margin:.2rem 0}
+.onglets,#vue-moderne{display:none!important}
+.alerte{background:#fff4d6;color:#4a3500;border:1px solid #e0b84a;border-left:5px solid #c98a00;border-radius:4px;padding:.75rem 1rem;margin:0 0 1.2rem;font-family:var(--sans);font-size:.92rem;line-height:1.5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .alerte{background:#3a2e10;color:#f3e2b0;border-color:#8a6a1e}}
+:root[data-theme="dark"] .alerte{background:#3a2e10;color:#f3e2b0;border-color:#8a6a1e}
+.colonnes-liste{columns:2 16rem;column-gap:2rem;padding-left:1.1rem}
+.tableau{border-collapse:collapse;font-family:var(--sans);font-size:.92rem;min-width:18rem}
+.tableau th,.tableau td{border-bottom:1px solid var(--trait);padding:.35rem .9rem .35rem 0;text-align:left}
+.tableau td:last-child,.tableau th:last-child{text-align:right}
+.filtre{width:100%;max-width:420px;padding:.6rem .9rem;border:1px solid var(--trait);background:var(--surface);border-radius:4px;font-family:var(--sans);font-size:.95rem;margin:.4rem 0 1.2rem}
+ul.liste-som,ul.liste-rep{list-style:none;padding:0;margin:0}
+ul.liste-som li,ul.liste-rep li{padding:.8rem 0;border-bottom:1px solid var(--trait)}
+.ref{display:inline-block;font-family:var(--sans);font-size:.8rem;margin-bottom:.25rem}
+.ref button{background:none;border:0;padding:0;color:var(--rouge);text-decoration:underline;text-underline-offset:2px;cursor:pointer;font:inherit}
+.ref .attente{color:var(--gris)}
+.rep-nom{font-weight:600}
+.rep-det{color:var(--gris);font-size:.95rem}
+.rep-det button{background:none;border:0;padding:0;color:var(--rouge);cursor:pointer;font-family:var(--sans);font-size:.8rem;text-decoration:underline;margin-left:.3rem}
+nav.pages{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:var(--sans);font-size:.92rem;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait)}
+nav.pages button{background:none;border:0;padding:.75rem .4rem;cursor:pointer;color:var(--rouge)}
+nav.pages button:disabled{color:var(--trait);cursor:default}
+nav.pages .ou{flex:1;text-align:center;color:var(--gris)}
+nav.pages .ou strong{color:var(--encre);font-weight:600}
+
+main{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem 3rem;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2rem;align-items:start}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+
+.scan{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1rem)}
+@media (max-width:860px){.scan{position:static}}
+.cadre{background:var(--cadre);border-radius:3px;overflow:hidden;position:relative;touch-action:none;cursor:grab;aspect-ratio:1300/1835;width:min(100%, calc((100vh - 8rem) * 1300 / 1835));margin:0 auto}
+@media (max-width:860px){.cadre{width:100%}}
+.cadre.tire{cursor:grabbing}
+.toile{position:absolute;inset:0;transform-origin:0 0}
+.toile img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none}
+.bande{position:absolute;background:var(--surligne);border-left:3px solid var(--rouge);opacity:0;transition:opacity .15s}
+.bande.vue{opacity:1}
+.outils{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-top:.6rem;font-family:var(--sans);font-size:.85rem;color:var(--gris)}
+.outils button{border:1px solid var(--trait);background:var(--surface);border-radius:4px;min-width:2.2rem;padding:.3rem .55rem;cursor:pointer}
+.outils span{margin-left:auto}
+
+.texte h2{font-family:var(--fell);font-weight:400;font-size:1.7rem;margin:0 0 .2rem}
+.texte .sous{color:var(--gris);font-size:.95rem;margin:0 0 1rem}
+.onglets{display:flex;gap:.25rem;border-bottom:1px solid var(--trait);margin:0 0 .9rem;font-family:var(--sans);font-size:.92rem}
+.onglets button{background:none;border:0;border-bottom:2px solid transparent;padding:.5rem .8rem;cursor:pointer;color:var(--gris);margin-bottom:-1px}
+.onglets button[aria-selected="true"]{color:var(--encre);border-bottom-color:var(--rouge);font-weight:600}
+.moderne p{margin:0 0 .9rem;max-width:62ch}
+.brouillon{font-family:var(--sans);font-size:.82rem;color:var(--gris);background:var(--surligne);padding:.45rem .7rem;border-radius:3px;margin:0 0 1rem}
+[hidden]{display:none!important}
+ol.lignes{list-style:none;margin:0;padding:0;counter-reset:l}
+ol.lignes li{counter-increment:l;display:grid;grid-template-columns:2.4rem 1fr;align-items:baseline;padding:.12rem .4rem .12rem 0;border-radius:3px;cursor:default}
+ol.lignes li::before{content:counter(l);font-family:var(--sans);font-size:.72rem;color:var(--gris);text-align:right;padding-right:.9rem;font-variant-numeric:tabular-nums}
+ol.lignes li.vue{background:var(--surligne)}
+.nom{font-variant:small-caps;letter-spacing:.02em}
+abbr.glo{text-decoration:underline dotted var(--rouge);text-underline-offset:3px;cursor:help}
+
+.bloc{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--trait)}
+.bloc h3{font-family:var(--fell);font-weight:400;font-size:1.3rem;margin:0 0 .6rem}
+.bloc dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem}
+.bloc dt{font-style:italic}
+.bloc dd{margin:0;color:var(--encre)}
+@media (max-width:520px){.bloc dl{grid-template-columns:1fr}.bloc dd{margin-bottom:.5rem}}
+.index li{margin-bottom:.3rem}
+.index ul{padding-left:1.1rem;margin:.2rem 0 .8rem}
+.index button{background:none;border:0;padding:0;color:var(--rouge);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font-size:.9rem;font-family:var(--sans)}
+.colonnes{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem}
+@media (max-width:520px){.colonnes{grid-template-columns:1fr}}
+.colonnes h4{font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--gris);margin:0 0 .3rem}
+
+footer{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem 2.5rem;border-top:1px solid var(--trait);font-family:var(--sans);font-size:.85rem;color:var(--gris)}
+footer p{margin:.3rem 0;max-width:75ch}
+.acompleter{background:var(--surligne);color:var(--encre);padding:0 .25rem;border-radius:2px}
+@media (prefers-reduced-motion:reduce){.bande{transition:none}}
+</style>
+</head>
+<body>
+<header class="tete">
+  <div class="titre">
+    <h1>Rôle des biens de Guillaume de Gribaldy</h1>
+    <p>Seigneur de Farges, biens relevant du fief du château d’Évian, 1616. Fonds patrimonial de la commune de Saint-Paul-en-Chablais.</p>
+  </div>
+  <div class="recherche" role="search">
+    <label for="q" class="sr" style="position:absolute;left:-9999px">Rechercher dans le livre</label>
+    <input id="q" type="search" placeholder="Chercher un nom, un lieu, un mot…" autocomplete="off">
+    <div class="resultats" id="resultats" role="listbox"></div>
+  </div>
+</header>
+
+<nav class="menu" aria-label="Rubriques">
+  <a href="#accueil" data-vue="accueil">Présentation</a>
+  <a href="#page-1" data-vue="lire" id="lien-lire">Lire le document</a>
+  <a href="../index.html">← Le terrier du prieuré (1668)</a>
+</nav>
+
+<section class="vue-doc" id="vue-accueil" hidden>
+  <div class="alerte" role="note"><strong>Première ébauche, à vérifier.</strong> Cette transcription a été réalisée par une intelligence artificielle (Claude, développé par Anthropic) à partir des scans, à la demande de la commune. Elle contient certainement des erreurs, en particulier sur les noms de personnes et de lieux. Les lectures incertaines sont signalées par [?]. Elle n’a pas encore été vérifiée par un spécialiste et ne doit pas être citée comme une transcription officielle.</div>
+  <h2>Le document</h2>
+  <p class="chapo">Ce cahier de dix pages, qui appartient à la commune de Saint-Paul-en-Chablais, est un « rôle », c’est-à-dire une liste, des biens que noble Guillaume de Gribaldy, seigneur de Farges, tient en fief du château d’Évian. La première page mentionne une reconnaissance du 15 décembre 1616.</p>
+  <p>Pour chaque bien, le texte indique sa nature (maison, grange, vigne, jardin, bois, pré), son emplacement et ses limites. La plupart se trouvent à Évian : sous l’hôpital neuf, près des fossés et des murailles de la ville, le long du chemin d’Évian à Thonon, au lieu-dit le Chinal. Un bien se trouve à Saint-Paul. Les références notées en marge (« f° 197 », etc.) semblent renvoyer aux folios des registres de reconnaissances où chaque bien avait été enregistré.</p>
+  <h3>Le lien avec le terrier du prieuré de 1668</h3>
+  <p>Dans le terrier de 1668 conservé par la commune, le seigneur qui déclare ses biens au prieuré de Saint-Paul est Antoine Vespasian de Gribaldy, lui aussi seigneur de Farges. Le présent document concerne donc la même famille, environ cinquante ans plus tôt. La parcelle de Saint-Paul cite aussi des familles que l’on retrouve dans le terrier : Luysod, les héritiers de Jean Bochatton de Poïse, Bernard Bochatton. Le lien de parenté exact entre Guillaume et Antoine Vespasian reste à établir.</p>
+  <div class="boutons"><a class="principal" href="#page-1">Lire le document</a><a href="../index.html">Le terrier du prieuré (1668)</a></div>
+  <h3>Liste des biens</h3>
+  <p class="petit">Résumés de travail, établis à partir de la transcription provisoire.</p>
+  <ul class="liste-som" id="liste-biens"><li><span class="ref"><button type="button" data-i="0" data-l="9">Page 1</button></span><div>Maison avec jardin (ancien emplacement de maison), sous l’hôpital neuf, à Évian.</div></li><li><span class="ref"><button type="button" data-i="0" data-l="22">Page 1</button></span><div>Maison haute avec son emplacement, ses cours et son jardin, sous l’hôpital neuf.</div></li><li><span class="ref"><button type="button" data-i="1" data-l="14">Page 2</button></span><div>Ancienne maison devenue grange, avec une place, contre les murailles d’Évian.</div></li><li><span class="ref"><button type="button" data-i="2" data-l="3">Page 3</button></span><div>Reconnaissance d’Anthoine Guérin [?] : maison devenue simple emplacement, sous l’hôpital neuf.</div></li><li><span class="ref"><button type="button" data-i="2" data-l="17">Page 3</button></span><div>Reconnaissance de Nicolas Mollie [?] : bois de deux poses et demie, au bois des Dorez [?].</div></li><li><span class="ref"><button type="button" data-i="3" data-l="5">Page 4</button></span><div>Maison dans la rue « de dessous », à Évian.</div></li><li><span class="ref"><button type="button" data-i="3" data-l="18">Page 4</button></span><div>Grange dans la rue « de dessous », près des fours, à Évian.</div></li><li><span class="ref"><button type="button" data-i="4" data-l="6">Page 5</button></span><div>Reconnaissance de Jacques Freynon [?] : vigne au lieu-dit au Serioux [?], le long du chemin d’Évian à Thonon.</div></li><li><span class="ref"><button type="button" data-i="4" data-l="16">Page 5</button></span><div>Vigne (une fossorée et un quart), au même lieu.</div></li><li><span class="ref"><button type="button" data-i="4" data-l="24">Page 5</button></span><div>Quatre fossorées de vigne et jardin, au lieu-dit « en la Chenaux » [?].</div></li><li><span class="ref"><button type="button" data-i="5" data-l="7">Page 6</button></span><div>Quatre fossorées de vigne et jardin, au même lieu, près des fossés de la ville.</div></li><li><span class="ref"><button type="button" data-i="5" data-l="16">Page 6</button></span><div>Demi-fossorée de terre, devenue jardin.</div></li><li><span class="ref"><button type="button" data-i="6" data-l="1">Page 7</button></span><div>Terre et vigne (environ trois fossorées) au-dessus des fossés de la ville.</div></li><li><span class="ref"><button type="button" data-i="6" data-l="12">Page 7</button></span><div>Une fossorée de terre.</div></li><li><span class="ref"><button type="button" data-i="6" data-l="17">Page 7</button></span><div>Jardin d’environ une fossorée, au Serioux [?], le long du chemin d’Évian à Thonon.</div></li><li><span class="ref"><button type="button" data-i="7" data-l="3">Page 8</button></span><div>Moitié de deux fossorées et demie de vigne.</div></li><li><span class="ref"><button type="button" data-i="7" data-l="10">Page 8</button></span><div>Moitié de huit fossorées de vigne et terre, en Chynal.</div></li><li><span class="ref"><button type="button" data-i="7" data-l="16">Page 8</button></span><div>Huit fossorées de vigne et terre.</div></li><li><span class="ref"><button type="button" data-i="7" data-l="21">Page 8</button></span><div>Demi-fossorée de terre et vigne, en partie devenue jardin.</div></li><li><span class="ref"><button type="button" data-i="8" data-l="1">Page 9</button></span><div>À Saint-Paul : reconnaissance d’Andriaz [?] Granjier [?], femme de Gabriel Luysod : six poses de terre et quatre seyturées de pré avec une grange, en les Quinivalles [?].</div></li><li><span class="ref"><button type="button" data-i="8" data-l="15">Page 9</button></span><div>Huit fossorées de vigne devenues jardin, au Chinal, près des fossés d’Évian.</div></li></ul>
+  <h3>Conventions de transcription</h3>
+  <p>La transcription suit le manuscrit ligne à ligne et garde l’orthographe d’origine. Les abréviations sont développées entre parenthèses, par exemple « seig(neu)r ». Les signes suivants sont utilisés : [?] pour une lecture incertaine, [barré : …] pour un mot barré dans le manuscrit, [blanc] pour un espace laissé vide par le scribe, et [En marge : …] pour les notes écrites dans la marge.</p>
+  <p class="credits petit">Transcription provisoire : Claude (intelligence artificielle d’Anthropic), novembre 2026, en attente de vérification.</p>
+</section>
+
+<div id="vue-lire" hidden>
+<nav class="pages" aria-label="Pages">
+  <button id="prec" type="button">‹ Page précédente</button>
+  <div class="ou" id="ou"></div>
+  <button id="suiv" type="button">Page suivante ›</button>
+</nav>
+
+<main>
+  <section class="scan" aria-label="Scan de la page">
+    <div class="cadre" id="cadre">
+      <div class="toile" id="toile"><img id="img" alt=""></div>
+    </div>
+    <div class="outils">
+      <button type="button" id="zmoins" aria-label="Dézoomer">−</button>
+      <button type="button" id="zplus" aria-label="Zoomer">+</button>
+      <button type="button" id="zreset">Page entière</button>
+      <span>Molette ou pincement pour zoomer, glisser pour déplacer</span>
+    </div>
+  </section>
+
+  <section class="texte" aria-label="Transcription">
+    <h2 id="titrepage"></h2>
+    <div class="onglets" role="tablist">
+      <button type="button" role="tab" id="ong-transcription" aria-selected="true">Transcription</button>
+      <button type="button" role="tab" id="ong-moderne" aria-selected="false">Français actuel</button>
+    </div>
+    <div id="vue-transcription" role="tabpanel">
+      <div class="alerte" role="note"><strong>Transcription provisoire, réalisée par une intelligence artificielle :</strong> elle contient certainement des erreurs et doit être vérifiée par un spécialiste. Lectures incertaines signalées par [?].</div>
+      <p class="sous">Transcription ligne à ligne, orthographe d’origine, abréviations développées entre parenthèses.</p>
+      <ol class="lignes" id="lignes"></ol>
+    </div>
+    <div id="vue-moderne" role="tabpanel" hidden>
+      <p class="brouillon">Version de travail, en attente de relecture. Elle aide à comprendre le texte mais ne remplace pas la transcription.</p>
+      <div class="moderne" id="moderne"></div>
+    </div>
+
+    <div class="bloc" id="blocnotes">
+      <h3>Notes</h3>
+      <dl id="notes"></dl>
+    </div>
+
+    <div class="bloc index">
+      <h3>Personnes et lieux de cette page</h3>
+      <div class="colonnes">
+        <div><h4>Personnes</h4><ul id="personnes"></ul></div>
+        <div><h4>Lieux</h4><ul id="lieux"></ul></div>
+      </div>
+    </div>
+
+    <div class="bloc">
+      <h3>Petit glossaire</h3>
+      <dl id="glossaire"></dl>
+    </div>
+  </section>
+</main>
+</div>
+
+<footer>
+  <p>Rôle des biens que tient et possède noble Guillaume de Gribaldy, seigneur de Farges, relevant du fief du château d’Évian (1616). Document appartenant à la commune de Saint-Paul-en-Chablais.</p>
+  <p>Transcription provisoire réalisée par une intelligence artificielle (Claude, Anthropic), à vérifier par un spécialiste. Signalez toute correction à la mairie.</p>
+</footer>
+
+<script>
+/* ===== Données : ajouter une entrée par page ===== */
+let PAGES = [];
+let GLOSSAIRE = {};
+function ajouterPage(p){ PAGES.push(p); }
+
+/* ===== Outils ===== */
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+let idx = 0;
+
+function decorer(ligne){
+  let h = esc(ligne);
+  h = h.replace(/\b([A-Z]{2,}(?: [A-Z]{2,})*)\b/g, m => ["POUR","ITEM","ASCAVOIR"].includes(m) ? m : `<span class="nom">${m}</span>`);
+  const termes = Object.keys(GLOSSAIRE).sort((a,b)=>b.length-a.length);
+  const parts = h.split(/(<[^>]+>)/);
+  const fait = new Set();
+  for (let k=0;k<parts.length;k+=2){
+    for (const t of termes){
+      if (fait.has(t)) continue;
+      const re = new RegExp("(^|[^\\wÀ-ÿ])(" + t.replace(/[()]/g,"\\$&") + ")(?![\\wÀ-ÿ])", "i");
+      if (re.test(parts[k])){
+        fait.add(t);
+        parts[k] = parts[k].replace(re,(m,a,b)=>`${a}\u0001${t}\u0002${b}\u0003`);
+      }
+    }
+    parts[k] = parts[k].replace(/\u0001(.*?)\u0002(.*?)\u0003/g,(m,t,b)=>`<abbr class="glo" title="${esc(GLOSSAIRE[t])}">${b}</abbr>`);
+  }
+  h = parts.join("");
+  return h;
+}
+
+/* ===== Affichage d’une page ===== */
+function afficher(i, ligneCible){
+  idx = i;
+  const p = PAGES[i];
+  montrerVue("lire");
+  $("img").src = p.image;
+  const nomp = p.titre || `Page ${p.num}`;
+  $("img").alt = `Scan : ${nomp}`;
+  $("titrepage").textContent = nomp;
+  $("ou").innerHTML = `<strong>${nomp}</strong>, ${i+1} sur ${PAGES.length}`;
+  $("prec").disabled = i === 0;
+  $("suiv").disabled = i === PAGES.length - 1;
+
+  const toile = $("toile");
+  toile.querySelectorAll(".bande").forEach(b=>b.remove());
+  const b = p.bandes;
+  if (b) p.lignes.forEach((_,n)=>{
+    const d = document.createElement("div");
+    d.className = "bande"; d.dataset.n = n;
+    d.style.top = ((b.haut + n*b.pas)*100) + "%";
+    d.style.height = (b.hauteur*100) + "%";
+    d.style.left = (b.gauche*100) + "%";
+    d.style.width = ((b.droite-b.gauche)*100) + "%";
+    toile.appendChild(d);
+  });
+
+  $("moderne").innerHTML = p.moderne
+    ? p.moderne.map(par=>`<p>${esc(par)}</p>`).join("")
+    : "<p><em>La version en français actuel de cette page n’est pas encore disponible.</em></p>";
+  $("lignes").innerHTML = p.lignes.map((l,n)=>`<li data-n="${n}" tabindex="0"><span>${decorer(l)}</span></li>`).join("");
+  $("lignes").querySelectorAll("li").forEach(li=>{
+    const n = +li.dataset.n;
+    li.addEventListener("mouseenter",()=>marquer(n));
+    li.addEventListener("focus",()=>marquer(n));
+    li.addEventListener("click",()=>marquer(n));
+  });
+
+  $("blocnotes").style.display = p.notes.length ? "" : "none";
+  $("notes").innerHTML = p.notes.map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("");
+
+  const lien = (ls)=>ls.map(n=>`<button type="button" data-l="${n}">ligne ${n}</button>`).join(", ");
+  $("personnes").innerHTML = p.personnes.map(([n,d,ls])=>`<li><strong>${esc(n)}</strong>, ${esc(d)} (${lien(ls)})</li>`).join("");
+  $("lieux").innerHTML = p.lieux.map(([n,d,ls])=>`<li>${esc(n)}, ${esc(d)} (${lien(ls)})</li>`).join("");
+  document.querySelectorAll(".index button[data-l]").forEach(bt=>bt.addEventListener("click",()=>allerLigne(+bt.dataset.l-1)));
+
+  const plein = norm(p.lignes.join(" "));
+  $("glossaire").innerHTML = Object.entries(GLOSSAIRE)
+    .filter(([t])=>new RegExp("(^|[^a-z])"+norm(t).replace(/[()]/g,"\\$&")+"(?![a-z])").test(plein))
+    .map(([t,d])=>`<dt>${esc(t)}</dt><dd>${esc(d)}</dd>`).join("");
+
+  try{ history.replaceState(null,"","#page-"+p.num); }catch(e){}
+  zoomReset();
+  if (ligneCible != null) setTimeout(()=>allerLigne(ligneCible),50);
+}
+
+function marquer(n){
+  document.querySelectorAll(".bande").forEach(b=>b.classList.toggle("vue", +b.dataset.n===n));
+  document.querySelectorAll("#lignes li").forEach(li=>li.classList.toggle("vue", +li.dataset.n===n));
+}
+function onglet(v){
+  const m = v==="moderne";
+  $("ong-moderne").setAttribute("aria-selected", m); $("ong-transcription").setAttribute("aria-selected", !m);
+  $("vue-moderne").hidden = !m; $("vue-transcription").hidden = m;
+  if (m) marquer(-1);
+}
+$("ong-transcription").onclick = ()=>onglet("transcription");
+$("ong-moderne").onclick = ()=>onglet("moderne");
+function allerLigne(n){
+  onglet("transcription");
+  const li = document.querySelector(`#lignes li[data-n="${n}"]`);
+  if (!li) return;
+  marquer(n);
+  li.scrollIntoView({block:"center",behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  li.focus({preventScroll:true});
+}
+
+/* ===== Zoom et déplacement ===== */
+let z=1, tx=0, ty=0;
+const cadre = $("cadre"), toile = $("toile");
+function appliquer(){
+  const w = cadre.clientWidth, h = cadre.clientHeight;
+  tx = Math.min(0, Math.max(w - w*z, tx));
+  ty = Math.min(0, Math.max(h - h*z, ty));
+  toile.style.transform = `translate(${tx}px,${ty}px) scale(${z})`;
+}
+function zoomer(f, cx, cy){
+  const w = cadre.clientWidth, h = cadre.clientHeight;
+  cx ??= w/2; cy ??= h/2;
+  const nz = Math.min(5, Math.max(1, z*f));
+  tx = cx - (cx - tx) * nz / z;
+  ty = cy - (cy - ty) * nz / z;
+  z = nz; appliquer();
+}
+function zoomReset(){ z=1; tx=0; ty=0; appliquer(); }
+$("zplus").onclick = ()=>zoomer(1.4);
+$("zmoins").onclick = ()=>zoomer(1/1.4);
+$("zreset").onclick = zoomReset;
+cadre.addEventListener("wheel", e=>{
+  e.preventDefault();
+  const r = cadre.getBoundingClientRect();
+  zoomer(e.deltaY < 0 ? 1.15 : 1/1.15, e.clientX-r.left, e.clientY-r.top);
+},{passive:false});
+const pts = new Map(); let dist0=0, z0=1;
+cadre.addEventListener("pointerdown", e=>{ cadre.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); cadre.classList.add("tire");
+  if (pts.size===2){ const [a,b]=[...pts.values()]; dist0=Math.hypot(a.x-b.x,a.y-b.y); z0=z; } });
+cadre.addEventListener("pointermove", e=>{
+  if (!pts.has(e.pointerId)) return;
+  const prev = pts.get(e.pointerId); pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if (pts.size===1){ tx += e.clientX-prev.x; ty += e.clientY-prev.y; appliquer(); }
+  else if (pts.size===2){ const [a,b]=[...pts.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y);
+    const r=cadre.getBoundingClientRect(); zoomer((z0*d/dist0)/z, (a.x+b.x)/2-r.left, (a.y+b.y)/2-r.top); }
+});
+const fin = e=>{ pts.delete(e.pointerId); if(!pts.size) cadre.classList.remove("tire"); };
+cadre.addEventListener("pointerup",fin); cadre.addEventListener("pointercancel",fin);
+cadre.addEventListener("dblclick", e=>{ const r=cadre.getBoundingClientRect(); z>1.5 ? zoomReset() : zoomer(2.5,e.clientX-r.left,e.clientY-r.top); });
+addEventListener("resize", appliquer);
+
+/* ===== Recherche dans tout le livre ===== */
+const q = $("q"), res = $("resultats");
+q.addEventListener("input", ()=>{
+  const t = norm(q.value.trim());
+  if (t.length < 2){ res.classList.remove("ouvert"); return; }
+  const trouves = [];
+  PAGES.forEach((p,i)=>{
+    p.lignes.forEach((l,n)=>{ if (norm(l).includes(t)) trouves.push({i,n,txt:l,p}); });
+    (p.moderne||[]).forEach(par=>{ const k=norm(par).indexOf(t); if (k>=0){ const a=Math.max(0,k-35); trouves.push({i,n:null,m:1,txt:(a?"…":"")+par.slice(a,k+t.length+45)+"…",p}); } });
+    p.notes.forEach(([a,d])=>{ if (norm(a+" "+d).includes(t)) trouves.push({i,n:null,txt:`Note : ${a}`,p}); });
+  });
+  res.innerHTML = trouves.length
+    ? trouves.slice(0,60).map(r=>{
+        const s = norm(r.txt).indexOf(t);
+        const h = s<0 ? esc(r.txt) : esc(r.txt.slice(0,s))+"<mark>"+esc(r.txt.slice(s,s+t.length))+"</mark>"+esc(r.txt.slice(s+t.length));
+        return `<button type="button" data-i="${r.i}" data-n="${r.n ?? ""}" data-m="${r.m?1:""}">${h}<small>Page ${r.p.num}${r.n!=null?`, ligne ${r.n+1}`:(r.m?", français actuel":"")}</small></button>`;
+      }).join("")
+    : `<div class="vide">Aucun résultat pour « ${esc(q.value.trim())} ». Essayez une autre orthographe (Bochaton, Bochatton…).</div>`;
+  res.classList.add("ouvert");
+  res.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    res.classList.remove("ouvert");
+    const i=+b.dataset.i, n=b.dataset.n===""?null:+b.dataset.n;
+    if (i!==idx) afficher(i,n); else if (n!=null) allerLigne(n);
+    if (b.dataset.m) onglet("moderne");
+  });
+});
+document.addEventListener("click", e=>{ if (!e.target.closest(".recherche")) res.classList.remove("ouvert"); });
+q.addEventListener("keydown", e=>{ if (e.key==="Escape") res.classList.remove("ouvert"); });
+
+/* ===== Navigation ===== */
+$("prec").onclick = ()=>idx>0 && afficher(idx-1);
+$("suiv").onclick = ()=>idx<PAGES.length-1 && afficher(idx+1);
+/* Définitions du lexique de Françoise Déage, reprises dans le glossaire de chaque page */
+const GLOSS_DEAGE = {
+  "curtil": "petite cour ou jardin fermé de haies ou de fossés.",
+  "commung": "terrain communal.",
+  "maille": "monnaie qui valait un demi-denier.",
+  "fied": "fief. Le « fied lige » est une terre noble qu’un vassal tenait d’un seigneur, contre hommage et certains revenus.",
+  "commendataire": "qui touche les revenus du prieuré sans le diriger.",
+  "confesse": "reconnaît.",
+  "vefve": "veuve.",
+  "meneydes": "redevance.",
+  "albergataire": "celui qui tient une terre du seigneur contre une redevance annuelle (voir « Albergement » dans le lexique)."
+};
+let vueCourante = "";
+function montrerVue(v){
+  vueCourante = v;
+  for (const n of ["accueil","lire"]) $("vue-"+n).hidden = (n!==v);
+  document.querySelectorAll("nav.menu a").forEach(a=>{ if (a.dataset.vue===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+}
+function depuisHash(){
+  const h = location.hash;
+  const m = h.match(/^#page-(\d+)$/);
+  if (m){
+    const i = PAGES.findIndex(p=>p.num===+m[1]);
+    afficher(i>=0 ? i : 0);
+    return;
+  }
+  const v = "accueil";
+  montrerVue(v);
+  scrollTo(0,0);
+}
+function construireDocs(){
+  $("liste-biens").querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>afficher(+b.dataset.i,+b.dataset.l));
+}
+addEventListener("hashchange", depuisHash);
+
+/* ===== Chargement des fichiers de pages ===== */
+function charger(src){ return new Promise((ok,ko)=>{ const s=document.createElement("script"); s.src=src+"?v="+Date.now(); s.onload=ok; s.onerror=()=>ko(src); document.head.appendChild(s); }); }
+const GRIB_PAGES = [{"num": 1, "titre": null, "image": "scans/01.webp", "lignes": ["Roolle des biens que tient", "et possede noble Guilliaume", "de Gribaldy seig(neu)r de Farges se", "mouvant du fied du chasteau", "d’Evian", "Premierement de la Recog(noissan)ce des seigneurs", "de Bonnevaux [?] en fied soit en emphiteose", "perpetuelle le 15me Xbre 1616", "[En marge : Ext(ent)e [?] 2, f° 197]", "Item un certain chosal de maison a pr(ese)nt", "en maison avec un jardin devant situé", "en la ville d’Evian dessoubs l’hospital neuf", "jouxte la maison haute et le curtil desd(its)", "nobles freres, pour lesquels on confesse de", "dessoubs et de dessus, affronte a la grande", "charriere du couchant, avec son fond et", "appartenances. Et laquelle piece se confine", "a pr(ese)nt par nouveaux confins jouxte la maison", "dud(it) seig(neu)r de Gribaldy de dessoubs et de dessus,", "affronte a la grande charriere du couchant,", "t(erre) [?] et curtil ut s(upra) [?]", "[En marge : f° 198]", "Item desd(its) biens une maison haute avec", "son chosal, places et curtines d’icelle et le", "curtil devant lad(ite) maison et chosal existant"], "notes": [], "personnes": [], "lieux": []}, {"num": 2, "titre": null, "image": "scans/02.webp", "lignes": ["situee en la ville d’Evian dessoubs l’hospital", "neuf, jouxte deux charrieres publicques de", "dessus et du couchant, la maison a pr(ese)nt chosal", "d’Anthoine Guérin [?] autrefois divise d’avec la", "p(rese)nte en partie de dessus, les fossels de la ville", "d’Evian du levant, et la maison desd(its) nobles", "confessants des p(rese)nts biens de dessoubs. Et laquelle", "piece se confine a pr(ese)nt jouxte deux charrieres", "publicques de dessus et du couchant, la maison", "a pr(ese)nt chosal dud(it) seig(neu)r de Gribaldy de dessus en", "partie, les fossels de la ville d’Evian du levant", "et la maison a pr(ese)nt grange dud(it) seig(neu)r de Gribaldy", "de dessoubs", "[En marge : f° 203]", "Item desd(its) biens un chosal autrefois maison,", "le tout a pr(ese)nt en grange, situé (a) Evian avec une", "place derriere [?] et devant, jouxte la maison et", "curtil desd(its) nobles pour lesquels l’on confesse", "des p(rese)nts biens de dessus, l’affarictement [?] des hoirs", "de m(aîtr)e Pierre Merlin de dessoubs, affronte a la", "charriere publicque du couchant et aux", "murallies soit fossels de la ville d’Evian du levant,", "avec ses appartenances universelles et singullieres.", "Et laquelle grange se confine a pr(ese)nt jouxte", "la maison et curtil dud(it) seig(neu)r de Gribaldy de dessus,", "la maison de François Gaulthier de dessoubs"], "notes": [], "personnes": [], "lieux": []}, {"num": 3, "titre": null, "image": "scans/03.webp", "lignes": ["affronte a la charriere publicque du couchant", "et les fossels de lad(ite) ville du levant", "[En marge : Ext(ent)e [?] 1, f° 87]", "Item des biens et Recog(noissan)ce d’Anthoine", "Guérin [?] une maison a pr(ese)nt chosal située a Evian", "dessoubs l’hospital neuf, jouxte le curtil des", "nobles freres de Bonnevaux [?] de leurs paternels", "de dessoubs, la charriere publicque de dessus,", "affronte au curtil desd(its) nobles freres de Bonnevaux [?]", "aussy de leurs paternels du couchant, et les murallies", "de la ville d’Evian du levant. Et lequel chosal", "se confine a pr(ese)nt jouxte la maison dud(it) seig(neu)r", "de Gribaldy de dessoubs, la charriere publicque", "de dessus, affronte au curtil dud(it) seig(neu)r de Gribaldy", "du couchant et les murallies de lad(ite) ville", "du levant", "[En marge : f° 136 v°]", "Item de la Recog(noissan)ce de Nicolas Mollie [?]", "une piece de bois contenant deux poses et", "demy size au bois des Dorez [?], jouxte le chemin", "publicque de dessoubs, le bois des Colliard de S(ain)t", "Thomas de dessus, affronte au bois de Pierre", "Bernard, Aymoz et Berthoz [?] Bidal et de Pierre", "Nicolas et Simond Bidal du levant et le bois", "de noble Anthoine Cartier du couchant. Et", "laquelle piece se confine a pr(ese)nt jouxte"], "notes": [], "personnes": [], "lieux": []}, {"num": 4, "titre": null, "image": "scans/04.webp", "lignes": ["le chemin publicq de dessoubs, le bois des", "Colliard de dessus, affronte au bois des Bidal", "du levant, et le bois dud(it) s(ieu)r Joseph Biettet [?] du", "couchant", "[En marge : f° 137 v°]", "Item desd(its) biens une maison mortuaire [?]", "située a Evian en la charriere de dessoubs,", "jouxte la maison de Laurent Renand [?] soit de", "sa femme du levant, la maison dud(it) confess(an)t", "des p(rese)nts biens du couchant, affronte a la grande", "charriere de dessoubs, et a la place de noble Pierre", "de Blonnay de dessus. Et laquelle piece se", "confine a pr(ese)nt jouxte la maison de spectable", "Jean Chesel [?] du levant, la maison dud(it) s(ieu)r de Gribaldy", "du couchant, affronte a la grande charriere", "de dessoubs, et la place dud(it) seig(neu)r de Gribaldy de", "dessus", "[En marge : f° 139]", "Item desd(its) biens une grange située (a) Evian", "en la charriere de dessoubs des fours, jouxte", "la maison dud(it) confess(an)t du levant, la grange", "d’egrege George Charles de son bien propre du", "couchant, la maison soit curtil de Pernettaz", "Billiod [?] femme de m(aîtr)e Jean Dutruel, une place", "entremy, de dessus, affronte a la grande charriere", "de dessoubs. Et laquelle [barré : piece] grange se confine"], "notes": [], "personnes": [], "lieux": []}, {"num": 5, "titre": null, "image": "scans/05.webp", "lignes": ["a pr(ese)nt jouxte la maison dud(it) seig(neu)r de Gribaldy", "du levant, la grange [barré : de lad(ite)] d’hon(orab)le Jacques", "Charles du couchant, la maison soit curtil de m(aîtr)e", "François Coppel [?] soit sa femme, une place entremy", "de dessus, affronte a la grande charriere de dessoubs", "[En marge : f° 10 v°]", "Item des biens et Recog(noissan)ce d’egrege Jacques", "Freynon [?] un fossorier de vigne au territoire", "d’Evian soubs la charriere viellie lieud(it) au Serioux [?]", "jouxte la vigne, scavoir l’autre fossorée dud(it)", "confess(an)t nouvell(ement) divise et du p(rese)nt fied, d’occident,", "la charriere viellie de dessus, et le chemin", "publicq tendant d’Evian devers Thonon de dessoubs,", "et affronte a la vigne dud(it) confess(an)t des mesmes", "biens d’orient", "[En marge : f° 11]", "Item une fossoriée et la quarte part d’une", "autre fossoriée de vigne située au mesme", "lieu, partis de deux fossoriées et demy,", "jouxte la vigne du seig(neu)r de Meyroux [?] d’occident,", "le curtil de m(aîtr)e Pancras Laurent d’orient,", "affronte aux deux chemins publicques de dessus", "et de dessoubs", "[En marge : f° 11 v°]", "Item quattres fossorées de vigne et", "jardin située au t(errito)re d’Evian lieud(it) en la"], "notes": [], "personnes": [], "lieux": []}, {"num": 6, "titre": null, "image": "scans/06.webp", "lignes": ["Chenaux [?] de huict fossorées autrefois divise,", "jouxte la vigne et terre, scavoir les autres", "quattres fossorées dud(it) confess(an)t jadis divises", "et du p(rese)nt fied, d’occident, la vigne dud(it)", "confess(an)t d’orient, la charriere publicq de", "dessus et de dessoubs", "[En marge : f° 12]", "Item desd(its) biens quattre fossorées de vigne", "et jardin situé au mesme lieu, cy devant", "parties de huict fossoriées, jouxte la vigne", "dud(it) confess(an)t cy devant d’avec la p(rese)nte partie", "et dud(it) mesme fied devers occident, les fossels", "de la ville d’Evian d’orient [?], la charriere", "publicq de dessus et de dessoubs, t(erre) [barré : et terre]", "a pr(ese)nt jardin ut s(upra)", "[En marge : f° 12 v°]", "Item la moitié d’une fossorée de terre", "jouxte la vigne dud(it) confess(an)t d’avec la p(rese)nte", "divise et du mesme fied devers occident,", "la vigne dud(it) confessant sus confinée devers", "orient, affronte aux deux chemins publicqs", "de dessus et de dessoubs, t(erre) a pr(ese)nt jardin ut s(upra)"], "notes": [], "personnes": [], "lieux": []}, {"num": 7, "titre": null, "image": "scans/07.webp", "lignes": ["[En marge : f° 13]", "Item certaine piece de terre et vigne", "contenant environ trois fossoriées situées", "dessus les fosseaux de la ville d’Evian,", "jouxte la vigne et curtil de la [blanc] fille", "de [barré] noble Loÿs Querlaz [?] femme de m(aîtr)e Anthoine", "Fernex [?] d’orient, la vigne dud(it) confessant cy", "devant de François Cristin d’occident, les", "fosseaux de la ville de dessoubs et le chemin", "de dessus", "#", "[En marge : f° 14]", "Item une fossorée de terre jouxte la", "vigne dud(it) confessant du levant, la vigne", "dud(it) tenancier [?] du couchant, affronte aux deux", "chemins publicqs de dessus et dessoubs", "[En marge : f° 14 v°]", "Item certaine piece de curtil contenant", "environ une fossorée de curtil cy devant de", "deux fossorées de curtil divises, située au t(errito)re", "d’Evian dessoubs la charriere viellie lieud(it)", "au Serioux [?], jouxte la vigne dud(it) confessant", "cy devant d’avec la p(rese)nte du levant, la", "charriere viellie de dessus, et le chemin", "publicque tendant d’Evian a Thonon de", "dessoubs et le curtil de damoiselle Georgine"], "notes": [], "personnes": [], "lieux": []}, {"num": 8, "titre": null, "image": "scans/08.webp", "lignes": ["Jacquerod [?] Loÿs femme de noble Pierre Ducrest [?]", "du couchant", "[En marge : f° 15]", "Item la moitié de deux fossoriées et demy", "de vigne située au mesme lieu, jouxte l’autre", "moitié desd(ites) deux fossoriées et demy de vigne", "dud(it) confess(an)t du levant et couchant, affronte", "aux deux chemins publicqs de dessus et de", "dessoubs", "[En marge : f° 15 v°]", "Item la moitié de huicts fossoriées de", "vigne et terre situées aud(it) Evian lieudict en", "Chynal, jouxte la vigne dud(it) confessant du", "couchant, deux charrieres publicques de", "dessus et dessoubs", "[En marge : f° 16]", "Item huict fossorées de vigne et terre", "que jouxte la vigne dud(it) confessant sus", "confinée du couchant, lesd(its) deux chemins", "publicqs de dessus et de dessoubs", "[En marge : f° 16 v°]", "Item demy fossorée de terre et vigne t(erre)", "que jouxte l’autre demy fossoriée dud(it)", "confessant du levant, la vigne de noble Pierre", "Prevost du couchant, affronte aux deux chemins", "publicqs de dessus et dessoubs, t(erre) a pr(ese)nt en par(tie)", "jardin ut s(upra)"], "notes": [], "personnes": [], "lieux": []}, {"num": 9, "titre": null, "image": "scans/09.webp", "lignes": ["[En marge : Ext(ent)e [?] 9, f° 262 v°]", "Item des biens et Recognoissance de", "Andriaz [?] Granjier [?] femme de Gabriel Luysod", "six poses de terre et quattres seyturées de", "pré avec une grange situé au t(errito)re de S(ain)t Paul", "lieud(it) en les Quinivalles [?], dernierement en deux", "parcelles confinées et recogneues, a pr(ese)nt jointes", "et unies, jouxte les pasquiers communs", "du couchant, la terre des hoirs de feu Jean", "Bochatton de Poise du levant, le chemin", "publicque de dessoubs, et le pré de Bernard", "Bochatton ou de Françoise Laurent sa femme", "de dessus", "#", "[En marge : f° 13 v°]", "Item huict fossorées de vigne [barré : et terre]", "a pr(ese)nt jardin situées au t(errito)re d’Evian lieud(it)", "au Chinal, jouxte les fosseaux de la ville", "d’Evian devers orient, la vigne dud(it)", "confessant devers occident, et le chemin", "publicque de dessus et de dessoubs"], "notes": [], "personnes": [], "lieux": []}, {"num": 10, "titre": "Couverture", "image": "scans/10.webp", "lignes": ["Pour Mr Degribaldy", "[Ajout au crayon, d’une main plus récente :]", "fief du château d’Evian"], "notes": [], "personnes": [], "lieux": []}];
+const GRIB_GLOSS = {"roolle": "rôle : liste, inventaire écrit.", "seig(neu)r": "seigneur.", "fied": "fief.", "mouvant": "« se mouvant de » : relevant de, dépendant de (un fief).", "emphiteose": "emphytéose : concession d’un bien à très long terme contre une redevance.", "recog(noissan)ce": "reconnaissance : déclaration des biens tenus d’un seigneur.", "recognoissance": "reconnaissance : déclaration des biens tenus d’un seigneur.", "xbre": "décembre (X = dix, ancien dixième mois).", "item": "de même ; annonce un nouvel article.", "chosal": "emplacement d’une maison, maison en ruine ou terrain à bâtir.", "curtil": "petite cour ou jardin fermé.", "curtines": "cours ou petits enclos attenants.", "jouxte": "à côté de, contre.", "affronte": "touche, est limité par.", "charriere": "rue, chemin charretier.", "charrieres": "rues, chemins charretiers.", "couchant": "ouest.", "levant": "est.", "occident": "ouest.", "orient": "est.", "dessoubs": "au-dessous (côté aval).", "fossels": "fossés (de la ville).", "fosseaux": "fossés (de la ville).", "murallies": "murailles, remparts.", "hospital": "hôpital, hospice.", "hoirs": "héritiers.", "pose": "mesure de surface pour les terres.", "poses": "mesure de surface pour les terres.", "seyturées": "seyturée : mesure de surface pour les prés (ce qu’un faucheur fauche en un jour).", "fossorée": "fossorée : mesure de surface pour les vignes (ce qu’un homme bêche en un jour).", "fossorées": "fossorée : mesure de surface pour les vignes (ce qu’un homme bêche en un jour).", "fossoriée": "fossorée : mesure de surface pour les vignes.", "fossoriées": "fossorée : mesure de surface pour les vignes.", "fossorier": "fossorée : mesure de surface pour les vignes.", "pasquiers": "pâturages.", "egrege": "« égrège », titre donné aux notaires et officiers.", "spectable": "titre honorifique donné aux hommes de loi et notables.", "damoiselle": "titre donné à une femme de la petite noblesse ou de la bourgeoisie.", "entremy": "entre les deux, au milieu.", "ut s(upra)": "« ut supra » : comme ci-dessus.", "confess(an)t": "confessant : celui qui déclare ses biens.", "confessant": "celui qui déclare ses biens."};
+PAGES = GRIB_PAGES;
+GLOSSAIRE = GRIB_GLOSS;
+construireDocs();
+depuisHash();
+</script>
+</body>
+</html>
