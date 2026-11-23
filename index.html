@@ -87,6 +87,10 @@ ul.liste-som li,ul.liste-rep li{padding:.8rem 0;border-bottom:1px solid var(--tr
 nav.pages{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:var(--sans);font-size:.92rem;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait)}
 nav.pages button{background:none;border:0;padding:.75rem .4rem;cursor:pointer;color:var(--rouge)}
 nav.pages button:disabled{color:var(--trait);cursor:default}
+nav.pages .aller{display:flex;align-items:center;gap:.35rem;color:var(--gris);font-size:.88rem}
+nav.pages .aller input{width:4.2rem;padding:.3rem .4rem;border:1px solid var(--trait);border-radius:4px;background:var(--surface);font:inherit;color:var(--encre)}
+nav.pages .aller button{border:1px solid var(--trait);border-radius:4px;background:var(--surface);color:var(--encre);padding:.3rem .6rem}
+@media (max-width:640px){nav.pages{flex-wrap:wrap;justify-content:space-between}nav.pages .ou{order:-1;flex:0 0 100%!important;padding-top:.5rem}}
 nav.pages .ou{flex:1;text-align:center;color:var(--gris)}
 nav.pages .ou strong{color:var(--encre);font-weight:600}
 
@@ -228,6 +232,7 @@ footer p{margin:.3rem 0;max-width:75ch}
 <nav class="pages" aria-label="Pages">
   <button id="prec" type="button">‹ Page précédente</button>
   <div class="ou" id="ou"></div>
+  <div class="aller"><label for="aller">Aller à la page</label> <input id="aller" type="number" min="1" inputmode="numeric"> <button type="button" id="aller-ok">OK</button></div>
   <button id="suiv" type="button">Page suivante ›</button>
 </nav>
 
@@ -324,6 +329,7 @@ function afficher(i, ligneCible){
   idx = i;
   const p = PAGES[i];
   montrerVue("lire");
+  $("aller").value = p.num; $("aller").max = PAGES[PAGES.length-1].num;
   $("img").src = p.image;
   $("img").alt = `Scan de la page ${p.num} du manuscrit (folio ${p.folio})`;
   $("titrepage").textContent = `Page ${p.num}`;
@@ -481,6 +487,18 @@ document.addEventListener("click", e=>{ if (!e.target.closest(".recherche")) res
 q.addEventListener("keydown", e=>{ if (e.key==="Escape") res.classList.remove("ouvert"); });
 
 /* ===== Navigation ===== */
+function allerA(){
+  const n = parseInt($("aller").value,10);
+  const i = PAGES.findIndex(p=>p.num===n);
+  if (i>=0) afficher(i); else { $("aller").value = PAGES[idx].num; }
+}
+$("aller-ok").onclick = allerA;
+$("aller").addEventListener("keydown", e=>{ if (e.key==="Enter") allerA(); });
+document.addEventListener("keydown", e=>{
+  if (vueCourante!=="lire" || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+  if (e.key==="ArrowLeft" && idx>0) afficher(idx-1);
+  if (e.key==="ArrowRight" && idx<PAGES.length-1) afficher(idx+1);
+});
 $("prec").onclick = ()=>idx>0 && afficher(idx-1);
 $("suiv").onclick = ()=>idx<PAGES.length-1 && afficher(idx+1);
 const LEXIQUE = [["Albergement", "<p>L’acte par lequel un seigneur confie à un paysan, moyennant un servis annuel, une terre sur laquelle ce dernier acquiert un droit de propriété relatif, s’appelle en Savoie « l’albergement ». C’est un contrat par lequel le propriétaire albergeant, se réservant le domaine direct, cède à l’albergataire le domaine utile d’un bien pour une durée, sinon perpétuelle du moins assez longue, et sous l’obligation d’une redevance annuelle. R. Devos, Sources et méthodes de l’histoire de la Savoie II (AD74)</p>"], ["Seigneurie", "<p>« ensemble de terres, soigneusement et anciennement délimitées, qui constitue la propriété éminente et la zone de juridiction d’un personnage individuel ou collectif nommé seigneur » Le seigneur tient sa seigneurie en fief, directement ou indirectement, du souverain. (Roger Devos, Sources et méthodes de l’histoire de la Savoie II (AD 74)</p>"], ["Prieur commendataire", "<p>personne qui touche les revenus sans diriger le prieuré</p>"], ["Confesse", "<p>reconnaît</p>"], ["Reconnaissance", "<p>« une déclaration solennelle par laquelle l’albergataire déclarait au seigneur direct les biens qu’il détenait, dépendant de sa directe et sous quelles conditions il les possédait » R. Devos, Sources et méthodes de l’histoire de la Savoie II. A.D 74</p>"], ["La rénovation des terriers", "<p>pour ne pas perdre ou prescrire ses droits le seigneur devait périodiquement renouveler les reconnaissances des favetiers. En effet, après un certain nombre d’années, les tenures avaient changé de main par suite de partage, de vente ou d’échange. Pour cela le seigneur s’adressait à un praticien ou à un notaire commissaire d’extentes, le chargeant par contrat de recevoir les reconnaissances des favetiers et de dresser les nouveaux terriers, c’est-à-dire les registres qui contiendront ces reconnaissances. Ces opérations de reconnaissances sont longues et compliquées (il faut abréger les longueurs, clauses de styles et dispositions juridiques qui sont abondantes) R. Devos, Sources et méthodes de l’histoire de la Savoie. AD 74</p>"], ["Fied lige ou liege", "<p>(fief lige) terre noble qu’un vassal tenait d’un seigneur sous condition force et hommage et de lui fournir certains revenus. (dictionnaire Godefroy)</p>"], ["Vefse ou vesve", "<p>veuve</p>"], ["Meneydes", "<p>redevance</p>"], ["Censes, servis, meneydes", "<ul><li>« Cens et servis étaient payés à la Toussaint à Vallorsine</li><li>Cens et servis étaient payés à la Saint André pour Chamonix et le lac</li></ul><p>qui payaient plus en plus les meneydes, correspectifs du droit qu’avait le seigneur d’être hébergé et indemnisé de divers frais de voyage »</p><p>Histoire de la vallée et du prieuré de Chamonix de Perrin (page 175 extrait de Gallica)</p>"], ["Maille ou obole", "<p>monnaie du Moyen-Age qui valait un demi-denier et qui fut frappée du XIII au XVème siècle notamment dans l’évêché de Lausanne, de Genève, de Fribourg et en Savoie (Dictionnaire historique de la Suisse)</p>"], ["Pain de frasses", "<p class=\"petit\">Sens à préciser.</p>"], ["Curtil ou cortil", "<p>petite cour ou jardin fermé de haies, de fossés (Dictionnaire Godefroy)</p>"], ["Chenevier", "<p>champ de chanvre</p>"], ["Commong ou commung", "<p>terrain communal</p>"], ["Leschiere ou leschere", "<p>lieu planté de roseaux, roselière</p>"], ["Esgance", "<p>en Savoie, l’esgance est une redevance foncière due par le tenancier au seigneur ou châtelain pour une terre, un lieu (Archives de Haute-Savoie)</p>"], ["Extentes", "<p>attesté dès le milieu du XIIIème siècle en France contient deux idées, celle d’étendre et celle de rédaction (une description détaillée des droits d’un seigneur foncier et s’applique particulièrement bien aux reconnaissance)</p>"], ["Bossonnaillies", "<p>petit bois. Bossonner, garnir de petit bois (dictionnaire Godefroy)</p>"], ["Rate ou ratte", "<p>contribution exigée de tous les fonctionnaires recevant des gages du roi (dictionnaire Godefroy)</p>"], ["Ratte Part", "<p>quote-part</p>"], ["Genevrier, genevriere", "<p>lieu planté de genevriers (dictionnaire Godefroy)</p>"], ["Mittigation", "<p>action qui consiste à réduire l’intensité de certains aléas</p><p>Synonymes : atténuation, limitation, réduction ou encore allègement</p>"], ["Main morte", "<p>droit pour le seigneur d’hériter des biens des vassaux</p>"], ["Poïse", "<ul><li>balance, pesée</li><li>petite monnaie qui dans le lyonnais valait le quart d’un denier et la moitié de l’obole (à l’origine on pesait la monnaie pour vérifier sa valeur) dictionnaire Godefroy</li></ul>"], ["Escheutte ou eschoite", "<p>succession, héritage collatéral (dictionnaire Godefroy)</p>"], ["Espued de grange", "<p>compartiment d’une grange cloisonnée (terme savoyard)</p>"], ["Osche", "<ul><li>jardin fermé de haies</li><li>terre labourable entourée de clôture, terre en culture (dictionnaire Godefroy)</li></ul>"], ["Chanta callie", "<p>chante caille</p>"], ["Bien tenant", "<p>terme de droit ancien, souvent utilisé au pluriel sous la forme « bienstenants »</p>"], ["Souloir", "<p>avoir coutume, avoir l’habitude (Littré)</p><p>« Et mon cœur qui souloit estre maistre de soi » (Pierre de Ronsard)</p>"], ["Devenoient en commise et escheutte", "<p class=\"petit\">Sens à préciser.</p>"], ["Obmis", "<p>serait l’ancienne orthographe de omis</p>"], ["Tailliable a misericorde", "<p>ancienne expression féodale, être à la merci d’un seigneur ou d’une autorité, surtout en ce qui concerne les impôts et redevances (histoire des impôts et redevances sous l’ancien régime)</p>"]];
